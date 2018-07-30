@@ -7,9 +7,13 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import echarts from 'echarts'
 import axios from 'axios'
+import Vuex from 'vuex'
+import store from './store/store'
+
 
 Vue.prototype.$echarts = echarts 
 Vue.use(ElementUI)
+Vue.use(Vuex)
 Vue.config.productionTip = false
 Vue.prototype.$ajax = axios
 
@@ -18,6 +22,7 @@ Vue.prototype.$ajax = axios
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

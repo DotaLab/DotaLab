@@ -97,26 +97,6 @@
                 <td>{{item.deaths}}</td>
                 <td>{{item.assists}}</td>
               </tr>
-
-            <!-- <tr>
-              <th rowspan="2" class="tb4">
-                <img src="">
-              </th>
-              <th class="tb2">圣堂刺客</th>
-              <th rowspan="2" class="tb1">我是占位符3</th>
-              <th rowspan="2" class="tb3">32:11</th>
-              <th>3</th>
-              <th>2</th>
-              <th>1</th>
-            </tr>
-            <tr class="tb2">
-              <th class="tb3">天辉</th>
-              <th colspan="3">
-                <div>
-                    <div id="KDAchart" style="width: 200px;height:10px;" class="echarts" echarts-min-interval="1.0"></div>
-                </div>
-              </th>
-            </tr> -->
           </tbody>
         </table>
         </div>
@@ -132,7 +112,6 @@
           <tbody>
          <tr>
                         <th class="tb1">玩家</th>
-                        <!-- <th class="tb1" colspan="2">选用英雄</th> -->
                         <th class="tb1">场次</th>
                         <th class="tb3">胜率</th>
          <tr v-for="(item,index) in peers " :key="index">
@@ -184,7 +163,8 @@ export default {
     var end = null;
     var time = null;
     console.log("mounted执行")
-    this.user_id = this.$route.query.name;
+    // this.user_id = this.$route.query.name;
+    this.user_id = this.$store.state.UserId;
     var baseURL = "https://api.opendota.com/api";
     var userURL = baseURL + "/players/" +  this.user_id;
     var totalURL = userURL + '/wl';
@@ -780,19 +760,4 @@ ul li {
   margin: 20px;
 }
 </style>
-// this.user_id = this.$route.query.name;
-    // var baseURL = "https://api.opendota.com/api";
-    // var userURL = baseURL + "/players/" +  this.user_id;
-    // var totalURL = userURL + '/wl';
-    // axios.get(userURL)
-    // .then(response => {
-    //   this.user = response.data;
-    //   this.geticon();
-    //   }
-    // ).catch(function (response) {console.log(response);});
-    // axios.get(totalURL)
-    // .then(response => {
-    //   this.user_total = response.data;
-    //   this.drawPie();
-    //   }).catch(function (response) {console.log(response);});
 
