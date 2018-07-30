@@ -8,7 +8,7 @@
         <div class="username">
           <p>{{personaname}}</p>
           <ul>
-            <button >刷新</button>
+            <button>刷新</button>
             <button>过滤</button>
           </ul>
         </div>
@@ -25,18 +25,17 @@
           </div>
         </div>
         <div class="total_win">
-            <h3>{{user_total.win}}</h3>
+            <h3>{{this.$store.state.UserTotal.win}}</h3>
             Win
         </div>
         <div class="total_lose">
-           <h3>{{user_total.lose}}</h3>
+           <h3>{{this.$store.state.UserTotal.lose}}</h3>
            Lose
         </div>
       </div>
       <div class="top_middle_2" >
         <div class="item">
-          <!-- 1,1胜率饼图-->
-          <div id="mainChart1" :style="{width: '100px', height: '100px'}"></div>
+          <Echarts id="mainChart1" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '100px', height: '100px'}"></Echarts>
         </div>
         <div class="item">
           <!-- 1,2胜率饼图-->
@@ -53,9 +52,9 @@
       </div>
       <div class="top_right">
         <!-- 段位logo -->
-        <img :src='rank_icon' style="position:absolute; top:20px; right:10px; z-index:1;" width="160px" height="160">
-        <img v-if="star_show" :src='star_icon' style="position:absolute; top:20px; right:10px; z-index:2;" width="160px" height="160">
-        <span style="position:absolute; top:145px; right:75px ;z-index:2;color:white">{{user.leaderboard_rank}}</span>
+        <img :src='icon[0]' style="position:absolute; top:20px; right:10px; z-index:1;" width="160px" height="160">
+        <img v-if="icon[2]" :src='icon[1]' style="position:absolute; top:20px; right:10px; z-index:2;" width="160px" height="160">
+        <span style="position:absolute; top:145px; right:75px ;z-index:2;color:white">{{this.$store.state.UserInfo.leaderboard_rank}}</span>
       </div>
     </div>
 
@@ -63,7 +62,8 @@
 
       <div class="middle_top"> 
         <!-- 折线大图表 -->
-        <div id="myChart" :style="{width: '1200px', height: '300px'}"></div>
+        <!-- <div id="myChart" :style="{width: '1200px', height: '300px'}"></div> -->
+        <echarts id="myChart" :options='options[1]' class="echarts" v-if="options_show" :style="{width: '1200px', height: '300px'}"></echarts>
       </div>
 
       <div class="middle_bottom">
@@ -73,7 +73,6 @@
 
 
     <div class="bottom">
-
       <div class="bottom_left">
         <div class="bottom_left_title">
           <!-- 左下20场比赛表格-->
@@ -132,78 +131,85 @@
 
 <script>
 import axios from 'axios'
+import { fetchUser } from '@/api/user'
+import { fetchUserTotal } from '@/api/user'
+import { fetchUserRecent } from '@/api/user'
+import { fetchUserPeer } from '@/api/user'
+import { geticon } from '@/utils/draw'
+import { pieoDraw } from '@/utils/draw'
+import { drawLine } from '@/utils/draw'
+import Echarts from '@/components/Echarts'
+
 export default {
+  components:{
+    Echarts,
+  },
   data() {
     return {
-      personaname:'',
+      
       avatarfull:'',
+      personaname:'',
+      personaname:'',
       user:[],
       user_total:[],
-      user_id:'',
-      rank_icon:'',
-      star_icon:'',
+      icon:[],
       star_show:1 ,
       recentMacth : [],
-      peers:[]
+      peers:[],
+      options:[],
+      options_show:false,
     };
   },
   created() {
-    console.log("Created被调用");
+    console.log("Created被调用");   
   },
   watch: {
-  },
-  // activated: function() {
-  //     console.log("activated被调用");
-  //   },
-  mounted() {
-    var start = new Date();
-    var kills =new Array();
-    var deaths =new Array();
-    var assists =new Array();
-    var end = null;
-    var time = null;
-    console.log("mounted执行")
-    // this.user_id = this.$route.query.name;
-    this.user_id = this.$store.state.UserId;
-    var baseURL = "https://api.opendota.com/api";
-    var userURL = baseURL + "/players/" +  this.user_id;
-    var totalURL = userURL + '/wl';
-    var recentURL = userURL +  '/recentMatches';
-    var peerURL = userURL +  '/peers';
-    console.log("开始异步获取数据" + start);
-    axios.all([
-      axios.get(userURL),
-      axios.get(totalURL),
-      axios.get(recentURL),
-      axios.get(peerURL),
-    ])
-    .then(response =>{
-        end  = new Date();
-        time = end -start;
-        console.log("异步获取数据花费" + time);
-        
-      // 上面两个请求都完成后，才执行这个回调方法
-        this.user = response[0].data;
-        this.user_total = response[1].data;
-        this.recentMacth = response[2].data;
-        this.peers = response[3].data;
-        this.avatarfull = response[0].data.profile.avatarfull
-        this.personaname = response[0].data.profile.personaname
+    options:function(val,oldval){
+      console.log("watch")
+      if(this.options.length == 2){
+        this.options_show = true;
+      }else{
+        this.options_show = false;
+      }
+    }
       
-        for (var i=0;i<20;i++)
-        {
-          kills.push(this.recentMacth[i].kills);
-          assists.push(this.recentMacth[i].assists);
-          deaths.push(this.recentMacth[i].deaths);
+  },
+  mounted() {
+    var kda = new Array(3);
+    for(var i=0;i<3;i++)
+      kda[i] = new Array(3);
+    var user_id = this.$store.state.UserId;
+
+    axios.all([
+        fetchUser(user_id),
+        fetchUserTotal(user_id),
+        fetchUserRecent(user_id),
+        fetchUserPeer(user_id)
+      ]).then(response=>{
+        this.$store.state.UserInfo = response[0].data;
+        this.$store.state.UserTotal = response[1].data;
+        this.$store.state.UserRecentMacth = response[2].data;
+        this.$store.state.UserPeerser = response[3].data;
+
+        for (var i=0;i<20;i++){
+          kda[0].push(this.$store.state.UserRecentMacth[i].kills);
+          kda[1].push(this.$store.state.UserRecentMacth[i].deaths);
+          kda[2].push(this.$store.state.UserRecentMacth[i].assists);
         }
-        start = new Date();
-        this.geticon(); 
-        this.drawPie();
-        this.drawLine(kills,assists,deaths);
-        end = new Date();
-        time = end - start;
-        console.log("页面绘制花费" + time);
-    });
+        //获取的KDA有三个空元素先删去
+        for(var i=0;i<3;i++){
+          kda[i].splice(0,3);
+        }
+        this.avatarfull = this.$store.state.UserInfo.profile.avatarfull;
+        this.personaname = this.$store.state.UserInfo.profile.personaname;
+        this.icon = geticon(this.$store.state.UserInfo.rank_tier);
+        var piedata  = new Array();
+        piedata.push(response[1].data.win);
+        piedata.push(response[1].data.lose);
+        this.options.push(pieoDraw(piedata));
+        this.options.push(drawLine(kda));
+        //drawLine("myChart",kills,assists,deaths);
+      })
   },
   beforeDestroy () {
       console.log("beforeDestroy已经被调用")
@@ -213,282 +219,12 @@ export default {
       this.myChart = null
     },
   methods: {
-    drawLine(kills,assists,deaths){
-        // 基于准备好的dom，初始化echarts实例
-        let myChart = this.$echarts.init(document.getElementById('myChart'))
-        // 绘制图表
-        console.log(deaths)
-        myChart.setOption({
-            tooltip: {
-              trigger: 'axis',
-            },
-            legend: {},
-            xAxis: {type: 'category',value:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]},
-            yAxis: {type: 'value'},
-            series: [
-              {
-                name:'击杀数',
-                type:'line',
-                stack: '总量',
-                data:kills
-              },
-              {  
-                name:'助攻数',
-                type:'line',
-                stack: '总量',
-                data: assists
-              },
-              {
-              name:'死亡数',
-              type:'line',
-              stack: '总量',
-              data:deaths
-            },
-           ]
-       });
-    },
-    drawKDA() {
-      let KDAchart = this.$echarts.init(document.getElementById("KDAchart"));
-
-      KDAchart.setOption({
-        grid: {
-          bottom: "80%",
-          containLabel: true
-        },
-        xAxis: {
-          show: false,
-          type: "value",
-          maxInterval: 1
-        },
-        yAxis: {
-          show: false,
-          type: "category",
-          data: [""]
-        },
-        series: [
-          {
-            name: "K",
-            type: "bar",
-            stack: "总量",
-            label: {
-              normal: {
-                position: "insideLeft"
-              }
-            },
-            data: [3]
-          },
-          {
-            name: "D",
-            type: "bar",
-            stack: "总量",
-            label: {
-              normal: {
-                position: "insideLeft"
-              }
-            },
-            data: [2]
-          },
-          {
-            name: "A",
-            type: "bar",
-            stack: "总量",
-            label: {
-              normal: {
-                position: "insideLeft"
-              }
-            },
-            data: [1]
-          }
-        ]
-      });
-    },
-    rankTierToString(rankTier) {
-    },
-    geticon() {
-      var base = '../../static/rank-icon/';
-      var iconURL = '';
-      var starURL = '';
-      var rank = 0;
-      var intRankTier = 0;
-      if(this.user.rank_tier != parseInt(this.user.rank_tier, 10)) {
-         iconURL = base + 'rank_icon_0.png';
-         
-      }else{
-           intRankTier = parseInt(this.user.rank_tier, 10);
-            iconURL = base + 'rank_icon_' + parseInt(intRankTier / 10, 10) + '.png';
-            starURL = base + 'rank_star_' + parseInt(intRankTier % 10, 10) + '.png';
-            if(parseInt(intRankTier % 10, 10) == 0){
-               starURL = '';
-               this.star_show = 0
-            }
-      }
-     this.rank_icon = iconURL;
-     this.star_icon = starURL;
-    },
-    drawPie(){
-      var begin=new Date();
-      console.log("Echars绘制pie开始：" + begin);
-      // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById("mainChart1"))
-      myChart.setOption({
-        graphic: {
-          type: "text", // [ default: image ]用 setOption 首次设定图形元素时必须指定。image, text, circle, sector, ring, polygon, polyline, rect, line, bezierCurve, arc, group,
-          top: "center", // 描述怎么根据父元素进行定位。top 和 bottom 只有一个可以生效。如果指定 top 或 bottom，则 shape 里的 y、cy 等定位属性不再生效。『父元素』是指：如果是顶层元素，父元素是 echarts 图表容器。如果是 group 的子元素，父元素就是 group 元素。
-          left: "center", // 同上
-          style: {
-            text: "夜魇胜率", // 文本块文字。可以使用 \n 来换行。[ default: '' ]
-            fill: "#fff", // 填充色。
-            fontSize: 12 // 字体大小
-            // fontWeight: 'bold'		// 文字字体的粗细，可选'normal'，'bold'，'bolder'，'lighter'
-          }
-        },
-
-        series: [
-          {
-            type: "pie",
-            radius: ["60%", "75%"],
-            hoverAnimation: false, //悬停的动画效果
-            clockWise: true,
-            startAngle: 180,
-            avoidLabelOverlap: false,
-            label: {
-              normal: {
-                text: "胜率",
-                show: false,
-                position: "outside"
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  fontSize: "12"
-                  // fontWeight: 'bold' 是加粗
-                }
-              }
-            },
-            labelLine: {
-              normal: {
-                show: true
-              }
-            },
-            data: [{ value: this.user_total.win, name: "胜率1" }, { value: this.user_total.lose, name: "胜率2" }]
-          }
-        ]
-      });
-      var end=new Date();
-      var time=end-begin;
-      console.log("Echars绘制pie执行了" + time);
-  // let mainChart2 = this.$echarts.init(
-      //   document.getElementById("mainChart2")
-      // ); /*1,2的饼图*/
-      // mainChart2.setOption({
-      //   series: [
-      //     {
-      //       name: "访问来源",
-      //       type: "pie",
-      //       radius: ["60%", "75%"],
-      //       hoverAnimation: false,
-      //       clockWise: true,
-      //       startAngle: 180,
-      //       avoidLabelOverlap: false,
-      //       label: {
-      //         normal: {
-      //           show: false,
-      //           position: "center"
-      //         },
-      //         emphasis: {
-      //           show: true,
-      //           textStyle: {
-      //             fontSize: "12"
-      //             // fontWeight: 'bold' 是加粗
-      //           }
-      //         }
-      //       },
-      //       labelLine: {
-      //         normal: {
-      //           show: false
-      //         }
-      //       },
-      //        data: [{ value: this.user_total.win, name: "胜率1" }, { value: this.user_total.lose, name: "胜率2" }]
-      //     }
-      //   ]
-      // });
-      // let mainChart3 = this.$echarts.init(
-      //   document.getElementById("mainChart3")
-      // ); /*2,1的饼图*/
-      // mainChart3.setOption({
-      //   series: [
-      //     {
-      //       name: "访问来源",
-      //       type: "pie",
-      //       radius: ["60%", "75%"],
-      //       clockWise: true,
-      //       startAngle: 180,
-      //       hoverAnimation: false,
-      //       avoidLabelOverlap: false,
-      //       label: {
-      //         normal: {
-      //           show: false,
-      //           position: "center"
-      //         },
-      //         emphasis: {
-      //           show: true,
-      //           textStyle: {
-      //             fontSize: "12"
-      //             // fontWeight: 'bold' 是加粗
-      //           }
-      //         }
-      //       },
-      //       labelLine: {
-      //         normal: {
-      //           show: false
-      //         }
-      //       },
-      //       data: [{ value: this.user_total.win, name: "胜率1" }, { value: this.user_total.lose, name: "胜率2" }]
-      //     }
-      //   ]
-      // });
-      // let mainChart4 = this.$echarts.init(
-      //   document.getElementById("mainChart4")
-      // ); /*2,2的饼图*/
-      // mainChart4.setOption({
-      //   series: [
-      //     {
-      //       name: "访问来源",
-      //       type: "pie",
-      //       radius: ["60%", "75%"],
-      //       clockWise: true,
-      //       startAngle: 180,
-      //       hoverAnimation: false,
-      //       avoidLabelOverlap: false,
-      //       label: {
-      //         normal: {
-      //           show: false,
-      //           position: "center"
-      //         },
-      //         emphasis: {
-      //           show: true,
-      //           textStyle: {
-      //             fontSize: "12"
-      //             // fontWeight: 'bold' 是加粗
-      //           }
-      //         }
-      //       },
-      //       labelLine: {
-      //         normal: {
-      //           show: false
-      //         }
-      //       },
-      //        data: [{ value: this.user_total.win, name: "胜率1" }, { value: this.user_total.lose, name: "胜率2" }]
-      //     }
-      //   ]
-      // });
-
-    }
   },
   computed:{
     user_totalmatch:{
       get:function(){
-          var temp = this.user_total.win+this.user_total.lose;
+          var temp = this.$store.state.UserTotal.win + 
+                    this.$store.state.UserTotal.lose;
           return temp;
         },
         set:function(newvalue){
@@ -497,7 +233,8 @@ export default {
     },
     user_totalrate:{
       get:function(){
-          var temp = this.user_total.win/(this.user_totalmatch) * 100;
+          var temp = this.$store.state.UserTotal.win /
+                                 (this.user_totalmatch) * 100;
           temp =  temp.toFixed(1)
           return temp;
         },
