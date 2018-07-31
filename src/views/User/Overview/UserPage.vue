@@ -74,54 +74,14 @@
 
     <div class="bottom">
       <div class="bottom_left">
-        <div class="bottom_left_title">
-          <Ttable v-if="options_show"></Ttable>
-          <!-- 左下20场比赛表格-->
-        <!-- <table style="margin:100;">
-          <tbody>
-              <tr>
-                        <th class="tb1">选用英雄</th>
-                        <th class="tb1">比赛结果</th>
-                        <th class="tb3">比赛时长</th>
-                        <th class="tb2">击杀</th>
-                        <th class="tb2">死亡</th>
-                        <th class="tb2">助攻</th>
-              </tr>
-
-              <tr v-for="(item,index) in recentMacth " :key="index">
-                <td>{{item.hero_id}}</td>
-                <td>{{item.radiant_win}}</td>
-                <td>{{item.duration}}</td>
-                <td>{{item.kills}}</td>
-                <td>{{item.deaths}}</td>
-                <td>{{item.assists}}</td>
-              </tr>
-          </tbody>
-        </table> -->
-        </div>
         <div class="match">
-         
+          <Ttable v-if="options_show"></Ttable>
         </div>
-
       </div>
 
 
       <div class="bottom_right">
-    <table style="margin:100;">
-          <tbody>
-         <tr>
-                        <th class="tb1">玩家</th>
-                        <th class="tb1">场次</th>
-                        <th class="tb3">胜率</th>
-         <tr v-for="(item,index) in peers " :key="index">
-                <td>{{item.personaname}}</td>
-                <td>{{item.with_games}}</td>
-                <td>{{item.with_win}}</td>
-              </tr>
-       
-          </tbody>
-        </table>
-
+        <Peertable v-if="options_show"></Peertable>
       </div>
 
     </div>
@@ -140,11 +100,13 @@ import { pieoDraw } from '@/utils/draw'
 import { drawLine } from '@/utils/draw'
 import Echarts from '@/components/Echarts'
 import Ttable from '@/components/Table/Table'
+import Peertable from '@/components/Table/PeerTable'
 
 export default {
   components:{
     Echarts,
     Ttable,
+    Peertable,
   },
   data() {
     return {
@@ -192,6 +154,8 @@ export default {
         this.$store.state.UserTotal = response[1].data;
         this.$store.state.UserRecentMacth = response[2].data;
         this.$store.state.UserPeerser = response[3].data;
+
+
 
         for (var i=0;i<20;i++){
           kda[0].push(this.$store.state.UserRecentMacth[i].kills);

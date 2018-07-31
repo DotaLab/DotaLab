@@ -21,3 +21,17 @@ export function formatSeconds(value) {
     } 
     return result; 
 } 
+
+export function fromnowadays(value){
+    var now = new Date().getTime() /1000;
+    var timedis = now - value;
+    var result = ""
+    var theTime = parseInt(timedis);
+    if(theTime < 3600)
+        result = ""+parseInt(theTime/60) + "分钟前";
+    else if(theTime < 86400)
+        result = ""+parseInt(theTime/3600) + "小时前";
+    else
+    result = ""+parseInt(theTime/86400) + "天前";
+    return result;
+}

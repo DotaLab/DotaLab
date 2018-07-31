@@ -2,17 +2,17 @@
   <el-table
     :data="tableData" 
     highlight-current-row
-    style="width: 100%">
+    style="width: 100%;padding=0px">
     <el-table-column
       prop="Img"
       label="使用英雄"
       width="130" 
       >
       <template slot-scope="scope">
-          <div class="hero">
-        <div class="pic"><img :src='scope.row.Img' style="width:55px;height:35px"></div>
-       <div class="name"> <span>{{scope.row.Heroname}}</span></div>
-          </div>
+          <div class="hero" style="float:left">
+        <div class="pic"><img :src='scope.row.Img' style="width:40px;height:30px"></div>
+        <div style="height:30px">{{scope.row.Heroname}}</div>
+        </div>
       </template>
     </el-table-column>
     <el-table-column
@@ -67,7 +67,6 @@
 import {formatSeconds} from '@/utils/tool'
   export default {
     created(){
-        alert("启动")
         this.tableData = this.$store.state.UserRecentMacth;
         for(var i=0;i<this.tableData.length;i++){
             var xtotal = this.tableData[i].kills +this.tableData[i].deaths +this.tableData[i].assists
