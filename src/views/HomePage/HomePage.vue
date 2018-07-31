@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import {fetchHeroImg} from '@/api/hero'
+import axios from 'axios';
 export default {
     data(){
         return {
@@ -17,6 +19,9 @@ export default {
     methods: {
         gotoUserPage(){
             // this.$router.psuh({path:'/User/Overview',query: {name: user_id}});
+            axios.get("/static/data/heroes.json").then(response =>{
+                this.$store.state.HeroImg = response.data;
+            })
             this.$router.push({path:'/User/Overview'});
 
         }

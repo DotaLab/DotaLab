@@ -75,12 +75,12 @@
     <div class="bottom">
       <div class="bottom_left">
         <div class="bottom_left_title">
+          <Ttable v-if="options_show"></Ttable>
           <!-- 左下20场比赛表格-->
-        <table style="margin:100;">
+        <!-- <table style="margin:100;">
           <tbody>
               <tr>
                         <th class="tb1">选用英雄</th>
-                        <!-- <th class="tb1" colspan="2">选用英雄</th> -->
                         <th class="tb1">比赛结果</th>
                         <th class="tb3">比赛时长</th>
                         <th class="tb2">击杀</th>
@@ -97,7 +97,7 @@
                 <td>{{item.assists}}</td>
               </tr>
           </tbody>
-        </table>
+        </table> -->
         </div>
         <div class="match">
          
@@ -139,10 +139,12 @@ import { geticon } from '@/utils/draw'
 import { pieoDraw } from '@/utils/draw'
 import { drawLine } from '@/utils/draw'
 import Echarts from '@/components/Echarts'
+import Ttable from '@/components/Table/Table'
 
 export default {
   components:{
     Echarts,
+    Ttable,
   },
   data() {
     return {
@@ -496,5 +498,17 @@ ul li {
   padding: 10px;
   margin: 20px;
 }
+.el-table th{
+        background:#060713; /*表头颜色*/
+        font-size: 12px;
+
+        text-align: center
+    }
+.el-table td{
+        background:#252525; /*颜色*/
+        font-size: 12px;
+        height:5px;
+        text-align: center
+    }
 </style>
 
