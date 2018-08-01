@@ -68,3 +68,18 @@ import {fromnowadays} from '@/utils/tool'
     }
   }
 </script>
+
+<style>
+.el-table th{
+        background:#060713; /*表头颜色*/
+        font-size: 12px;
+
+        text-align: center
+    }
+.el-table td{
+        background:#252525; /*颜色*/
+        font-size: 12px;
+        height:5px;
+        text-align: center
+    }
+</style>
