@@ -20,7 +20,6 @@ export function formatSeconds(value) {
     result = ""+parseInt(theTime2)+"小时"+result; 
     } 
     return result; 
-<<<<<<< HEAD
 } 
 
 export function fromnowadays(value){
@@ -36,6 +35,3 @@ export function fromnowadays(value){
     result = ""+parseInt(theTime/86400) + "天前";
     return result;
 }
-=======
-} 
->>>>>>> 10413026c85804acd4476c134810826fb219fbd7

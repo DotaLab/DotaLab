@@ -74,34 +74,6 @@
 
     <div class="bottom">
       <div class="bottom_left">
-<<<<<<< HEAD
-=======
-        <div class="bottom_left_title">
-          <Ttable v-if="options_show"></Ttable>
-          <!-- 左下20场比赛表格-->
-        <!-- <table style="margin:100;">
-          <tbody>
-              <tr>
-                        <th class="tb1">选用英雄</th>
-                        <th class="tb1">比赛结果</th>
-                        <th class="tb3">比赛时长</th>
-                        <th class="tb2">击杀</th>
-                        <th class="tb2">死亡</th>
-                        <th class="tb2">助攻</th>
-              </tr>
-
-              <tr v-for="(item,index) in recentMacth " :key="index">
-                <td>{{item.hero_id}}</td>
-                <td>{{item.radiant_win}}</td>
-                <td>{{item.duration}}</td>
-                <td>{{item.kills}}</td>
-                <td>{{item.deaths}}</td>
-                <td>{{item.assists}}</td>
-              </tr>
-          </tbody>
-        </table> -->
-        </div>
->>>>>>> 10413026c85804acd4476c134810826fb219fbd7
         <div class="match">
           <Ttable v-if="options_show"></Ttable>
         </div>
@@ -128,19 +100,13 @@ import { pieoDraw } from '@/utils/draw'
 import { drawLine } from '@/utils/draw'
 import Echarts from '@/components/Echarts'
 import Ttable from '@/components/Table/Table'
-<<<<<<< HEAD
 import Peertable from '@/components/Table/PeerTable'
-=======
->>>>>>> 10413026c85804acd4476c134810826fb219fbd7
 
 export default {
   components:{
     Echarts,
     Ttable,
-<<<<<<< HEAD
     Peertable,
-=======
->>>>>>> 10413026c85804acd4476c134810826fb219fbd7
   },
   data() {
     return {
