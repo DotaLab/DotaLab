@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div class="vessel">
     <div  class="top">
       <div class="top_left">
         <!-- 用户头像 -->
         <div class="contentDiv"> <img :src="avatarfull"/></div>
         <!-- 用户名称 -->
         <div class="username">
-          <p>{{personaname}}</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{personaname}}</p>
           <ul>
             <button>刷新</button>
             <button>过滤</button>
@@ -217,7 +217,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style >
 .contentDiv {
   display: inline-block;
   margin: 5px auto;
@@ -275,7 +275,7 @@ ul li {
   float: left;
   text-align: center;
 }
-.container {
+.vessel {
   width: 1200px;
   margin: 0 auto;
 }
@@ -288,13 +288,15 @@ ul li {
 }
 /* 顶部左边 */
 .top_left {
-  width: 350px;
+
   height: 180px;
   overflow: hidden;
   border: 1px dashed #dcdddd;
   float: left;
   padding: 5px;
-  margin: 5px;
+  margin: 5px ;
+ 
+  
 }
 .top_left .pic {
   width: 180px;
