@@ -27,48 +27,65 @@ export function geticon(rank_tier) {
 
 export  function pieoDraw(optiondata){
     var options = {
-        graphic: {
-            type: "text", // [ default: image ]用 setOption 首次设定图形元素时必须指定。image, text, circle, sector, ring, polygon, polyline, rect, line, bezierCurve, arc, group,
-            top: "center", // 描述怎么根据父元素进行定位。top 和 bottom 只有一个可以生效。如果指定 top 或 bottom，则 shape 里的 y、cy 等定位属性不再生效。『父元素』是指：如果是顶层元素，父元素是 echarts 图表容器。如果是 group 的子元素，父元素就是 group 元素。
-            left: "center", // 同上
-            style: {
-              text: "胜负关系", // 文本块文字。可以使用 \n 来换行。[ default: '' ]
-              fill: "green", // 填充色。
-              fontSize: 12 // 字体大小
-                    // fontWeight: 'bold'		// 文字字体的粗细，可选'normal'，'bold'，'bolder'，'lighter'
+        tooltip : {
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        series: [
+            {
+                name: '胜率',
+                type: 'gauge',
+                radius:50,
+                startAngle:180,
+                endAngle:0,
+                center: ['50%', '90%'],
+                axisLine: {
+                    show:true,
+                    // 属性lineStyle控制线条样式
+                    lineStyle: {
+                        width: 10,
+                        color:[[50/100, '#63869e'],[1,'#FFFFFF']]
+                    }
+                },
+                //分隔线样式。
+                splitLine: {
+                    show: false,
+                },
+                //刻度样式。
+                axisTick: {
+                    show: false,
+                },
+                //刻度标签。
+                axisLabel: {
+                    show:false,
+                },
+                //仪表盘指针。
+                pointer: {
+                    //这个show属性好像有问题，因为在这次开发中，需要去掉指正，我设置false的时候，还是显示指针，估计是BUG吧，我用的echarts-3.2.3；希望改进。最终，我把width属性设置为0，成功搞定！
+                    show: false,
+                    //指针长度
+                },
+                //仪表盘标题。
+                title: {
+                    show: true,
+                    offsetCenter: [0, '-40%'], // x, y，单位px
+                    textStyle: {
+                        color: '#hhh',
+                        fontSize: 30
+                    }
+                },
+                detail: {
+                    show: false,
+                    offsetCenter: [0, '-10%'],
+                    formatter: '{value}%',
+                    textStyle: {
+                        fontSize: 30
+                    }
+                },
+
+                data: [{value: 75}]
             }
-          },
-          color:['green', 'red'],
-          series: [
-          {
-              type: "pie",
-              radius: ["60%", "75%"],
-              hoverAnimation: false, //悬停的动画效果
-              clockWise: true,
-              startAngle: 180,
-              avoidLabelOverlap: false,
-              label: {
-                  normal: {
-                      text: "胜率",
-                      show: false,
-                      position: "outside"
-                  },
-                  emphasis: {
-                      show: true,
-                      textStyle: {
-                          fontSize: "12"
-                          // fontWeight: 'bold' 是加粗
-                      }
-                  }
-              },
-              labelLine: {
-                normal: {
-                show: true
-              }
-          },
-          data: [{ value: optiondata[0], name: "胜场"}, { value: optiondata[1], name: "负场" }]
-        }]
-    }
+        ]
+    };
     var timer = new Date()
     console.log("加载完成:"+ timer)
 
@@ -83,25 +100,33 @@ export function drawLine(optiondata){
           trigger: 'axis',
         },
         legend: {},
-        xAxis: {type: 'category',value:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]},
+        xAxis: {type: 'category',
+        data:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+            show:true,
+            "axisTick":{
+                "show":true
+              },},
         yAxis: {type: 'value'},
         series: [
           {
             name:'击杀数',
             type:'line',
             stack: '总量',
+            areaStyle: {normal: {}},
             data:optiondata[0]
           },
           {  
             name:'死亡数',
             type:'line',
             stack: '总量',
+            areaStyle: {normal: {}},
             data: optiondata[1]
           },
           {
           name:'助攻数',
           type:'line',
           stack: '总量',
+          areaStyle: {normal: {}},
           data:optiondata[2]
         },
        ]

@@ -215,26 +215,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.tb1 {
-  width: 190px;
-  height: 10px;
-  font-size: 12px;
-}
-.tb2 {
-  width: 30px;
-  height: 10px;
-  font-size: 12px;
-}
-.tb3 {
-  width: 60px;
-  height: 10px;
-  font-size: 12px;
-}
-.tb4 {
-  width: 160px;
-  height: 10px;
-  font-size: 12px;
-}
 .contentDiv {
   display: inline-block;
   margin: 5px auto;
