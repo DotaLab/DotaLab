@@ -34,7 +34,7 @@ export  function pieoDraw(optiondata){
             {
                 name: '胜率',
                 type: 'gauge',
-                radius:50,
+                radius:47,
                 startAngle:180,
                 endAngle:0,
                 center: ['50%', '90%'],

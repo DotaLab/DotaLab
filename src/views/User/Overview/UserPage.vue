@@ -35,19 +35,20 @@
       </div>
       <div class="top_middle_2" >
         <div class="item">
-          <Echarts id="mainChart1" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '100px', height: '100px'}"></Echarts>
+           <!-- 1,1胜率饼图-->
+          <Echarts id="mainChart1" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '100px', height: '80px'}"></Echarts>
         </div>
         <div class="item">
           <!-- 1,2胜率饼图-->
-            <div id="mainChart2" :style="{width: '100px', height: '100px'}"></div>
+             <Echarts id="mainChart2" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '150px', height: '80px'}"></Echarts>
         </div>
-        <div class="item">
-          <!-- 2,1胜率饼图-->
-           <div id="mainChart3" :style="{width: '100px', height: '100px'}"></div>
+                <div class="item">
+          <!-- 1,2胜率饼图-->
+             <Echarts id="mainChart3" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '100px', height: '80px'}"></Echarts>
         </div>
-        <div class="item">
-          <!-- 2,2胜率饼图-->
-           <div id="mainChart4" :style="{width: '100px', height: '100px'}"></div>
+                <div class="item">
+          <!-- 1,2胜率饼图-->
+             <Echarts id="mainChart4" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '150px', height: '80px'}"></Echarts>
         </div>
       </div>
       <div class="top_right">
@@ -354,25 +355,19 @@ ul li {
   color: #dcdddd;
 }
 .top_middle_2 {
-  width: 300px;
+  width: 200px;
   height: 180px;
   /* border:  1px dashed #dcdddd; */
   float: left;
   padding: 5px;
   margin: 5px;
 }
-.top_middle_2 .item {
-  float: left;
-  width: 145px;
-  position: relative;
-  margin: 5px 2px;
-}
-/* .top_middle_2 .item img{
-  width: 80px;
-  height: 80px;
+.top_middle_2 .item{
+  width: 100px;
+  height: 100px;
   float: left;
   
-} */
+}
 .top_middle_2 .item .item-text {
   float: right;
   top: 30px;
@@ -421,13 +416,15 @@ ul li {
   height: 600px;
   margin: 10px;
   border: 1px dashed #dcdddd;
+  background-color: #000000
 }
 .bottom_left {
-  border: 1px dashed #dcdddd;
+  /* border: 1px dashed #000000; */
   margin: 18px;
-  width: 55%;
+  width: 62%;
   height: 90%;
   float: left;
+
 }
 .bottom_left .bottom_left_title {
   line-height: 40px;
@@ -435,12 +432,13 @@ ul li {
   height: 40px;
 }
 .bottom_right {
-  border: 1px dashed #dcdddd;
-  width: 35%;
+  /* border: 1px dashed #dcdddd; */
+  width: 28%;
   float: right;
   height: 90%;
   padding: 10px;
   margin: 20px;
+
 }
 .el-table th{
         background:#060713; /*表头颜色*/
@@ -449,7 +447,7 @@ ul li {
         text-align: center
     }
 .el-table td{
-        background:#252525; /*颜色*/
+        background:#141414; /*颜色*/
         font-size: 12px;
         height:5px;
         text-align: center
