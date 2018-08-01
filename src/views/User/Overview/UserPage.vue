@@ -67,6 +67,7 @@
       </div>
 
       <div class="middle_bottom">
+       <navigation></navigation>
       </div>
 
     </div>
@@ -101,12 +102,14 @@ import { drawLine } from '@/utils/draw'
 import Echarts from '@/components/Echarts'
 import Ttable from '@/components/Table/Table'
 import Peertable from '@/components/Table/PeerTable'
+import Navigation from '@/components/Navigation'
 
 export default {
   components:{
     Echarts,
     Ttable,
     Peertable,
+    Navigation,
   },
   data() {
     return {
@@ -279,7 +282,7 @@ ul li {
 /* 顶部 */
 .top {
   width: 100%;
-  height: 240px;
+  height: 200px;
   margin: 10px;
   border: 1px dashed #dcdddd;
 }
@@ -395,25 +398,18 @@ ul li {
 /* 中间 */
 .middle {
   width: 100%;
-  height: 300px;
+  height: 380px;
   margin: 10px;
   border: 1px dashed #dcdddd;
 }
 .middle_top {
-  height: 35%;
+  height: 75%;
   width: 95%;
-  padding-left: 50px;
   padding-top: 15px;
 }
-.middle_bottom {
-  margin: 10px auto;
-  height: 50%;
-  width: 95%;
-}
-.middle_bottom img {
-  float: left;
-  width: 260px;
-  margin: 10px;
+.middle_bottom{
+  height: 20%;
+  border:  1px dashed #dcdddd;
 }
 /* 底部 */
 .bottom {
