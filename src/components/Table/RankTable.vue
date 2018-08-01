@@ -121,9 +121,9 @@ import {formatSeconds} from '@/utils/tool.js'
          heroData: [],
          currentPage: 1,
          size:0,
-         cur_pagesize: 10,
+         cur_pagesize: 5,
          cur_tableData: [],
-         cur_pagesizef : 10,
+         cur_pagesizef : 5,
       }
     },
     methods: {
