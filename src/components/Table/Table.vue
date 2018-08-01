@@ -121,7 +121,7 @@ import {formatSeconds} from '@/utils/tool'
     }
   }
 </script>
-<style>
+<style scoped>
 .hero{
     height: 30px;;
 }

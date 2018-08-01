@@ -1,8 +1,7 @@
 <template>
     <div id='HomePage'>
-        <p>请输入你的用户ID:</p>
+        请输入你的用户ID:
         <input v-model="user_id" placeholder="编辑我……"/>
-        <br/>
         <button @click="gotoUserPage">跳转</button>
     </div>
 </template>
@@ -34,6 +33,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
