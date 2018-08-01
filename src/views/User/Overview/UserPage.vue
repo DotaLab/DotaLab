@@ -63,7 +63,7 @@
       <div class="middle_top"> 
         <!-- 折线大图表 -->
         <!-- <div id="myChart" :style="{width: '1200px', height: '300px'}"></div> -->
-        <echarts id="myChart" :options='options[1]' class="echarts" v-if="options_show" :style="{width: '1200px', height: '300px'}"></echarts>
+        <echarts id="myChart" :options='options[1]' class="echarts" v-if="options_show" :style="{width: '1200px', height: '300px',position:'absolute',left:'170px',top:'313px'}"></echarts>
       </div>
 
       <div class="middle_bottom">

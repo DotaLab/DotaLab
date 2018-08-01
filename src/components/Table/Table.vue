@@ -9,10 +9,18 @@
       width="130" 
       >
       <template slot-scope="scope">
-          <div class="hero" style="float:left">
-        <div class="pic"><img :src='scope.row.Img' style="width:40px;height:30px"></div>
-        <div style="height:30px">{{scope.row.Heroname}}</div>
+          <div class="hero">
+
+            <div class="pic" style="float:left">
+              <img :src='scope.row.Img' style="width:40px;height:30px">
+              </div>
+          <div class="name">
+            {{scope.row.Heroname}}
+            </div>
+
         </div>
+
+        
       </template>
     </el-table-column>
     <el-table-column
@@ -123,6 +131,16 @@ import {formatSeconds} from '@/utils/tool'
 </script>
 <style>
 .hero{
+  width: 100px;
     height: 30px;;
 }
+.hero.pic{
+  display: inline;
+
+}
+.hero.name{
+  display: inline;
+}
+
+
 </style>
