@@ -1,42 +1,39 @@
 <template>
-  <el-table
-    :data="tableData" 
+<div>
+  <!-- todo 分页功能 -->
+   <div class="block">
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[5, 10, 15, 20]"
+      :page-size="100"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="size">
+    </el-pagination>
+  </div>
+    <el-table
+    :data="cur_tableData" 
     highlight-current-row
     style="width: 100%;padding=0px">
     <el-table-column
       prop="Img"
       label="使用英雄"
-      width="156" 
+      width="130" 
       >
       <template slot-scope="scope">
-          <span class="hero">
-
-            <div class="pic" style="float:left">
-              <img :src='scope.row.Img' style="width:50px;height:30px">
-              </div>
-          <div class="name" style="vertical-align:middle;height:35px;display:table-cell;color:#888888">
-            {{scope.row.Heroname}}
-            </div>
-
-        </span>
-
-        
+          <div class="hero" style="float:left">
+        <div class="pic"><img :src='scope.row.Img' style="width:40px;height:30px"></div>
+        <div style="height:30px">{{scope.row.Heroname}}</div>
+        </div>
       </template>
     </el-table-column>
-
     <el-table-column
       prop="Result"
-      label="比赛结果"
-      width="80"
       :filters="[{ text: '胜利', value: '胜利' }, { text: '败北', value: '败北' }]"
       :filter-method="filterWin"
-      filter-placement="bottom-end">
-          <template slot-scope="scope">
-            <el-tag :type="scope.row.Result === '胜利' ? 'success' : 'danger'"
-          disable-transitions>{{scope.row.Result}}</el-tag>
-    </template>
-
-      
+      label="比赛结果"
+      width="80">
     </el-table-column>
     <el-table-column
       prop="Time"
@@ -66,7 +63,7 @@
     <el-table-column
       prop="tag"
       label="KDA"
-      width="120">
+      width="115">
       <template slot-scope="scope">
        <div>
            <p> {{ scope.row.KDA }}</p>
@@ -77,14 +74,20 @@
       </template>
     </el-table-column>
   </el-table>
+</div>
+
 </template>
 
 <script>
-import {formatSeconds} from '@/utils/tool'
+import {fetchRankMatches} from '@/api/user.js'
+import {formatSeconds} from '@/utils/tool.js'
   export default {
     created(){
-        this.tableData = this.$store.state.UserRecentMacth;
-        for(var i=0;i<this.tableData.length;i++){
+        var userid = this.$store.state.UserId
+        fetchRankMatches(userid).then(response=>{
+          this.tableData = response.data
+          this.size = this.tableData.length
+          for(var i=0;i<this.tableData.length;i++){
             var xtotal = this.tableData[i].kills +this.tableData[i].deaths +this.tableData[i].assists
             
             this.tableData[i].K = this.tableData[i].kills/xtotal; 
@@ -97,56 +100,68 @@ import {formatSeconds} from '@/utils/tool'
                 this.tableData[i].Result = "败北";
             }
             this.tableData[i].Time = formatSeconds(this.tableData[i].duration)
-
-            this.tableData[i].Img = this.$store.state.HeroImg[this.tableData[i].hero_id].img;
-            
-            this.tableData[i].Heroname = this.$store.state.HeroImg[this.tableData[i].hero_id].name;
-            
-            this.tableData[i].Heroname = this.$store.state.HeroImg[this.tableData[i].hero_id].name;
-
             if(this.tableData[i].deaths == 0 ){
                 this.tableData[i].KDA = (this.tableData[i].kills + this.tableData[i].assists) / 1
             }else{
                 this.tableData[i].KDA = ((this.tableData[i].kills + this.tableData[i].assists) / this.tableData[i].deaths).toFixed(2)
             }
         }
-
+        this.cur_tableData  = this.tableData.slice(0,5);
+        for(var i=0;i<this.tableData.length;i++){
+            this.tableData[i].Img = this.$store.state.HeroImg[this.tableData[i].hero_id].img;
+            this.tableData[i].Heroname = this.$store.state.HeroImg[this.tableData[i].hero_id].name;
+        }
         this.heroData = this.$store.state.HeroImg;
+        
+        })
     },
-    data() {
+    data () {
       return {
-        tableData: [],
-        heroData: [],
+         tableData: [],
+         heroData: [],
+         currentPage: 1,
+         size:0,
+         cur_pagesize: 5,
+         cur_tableData: [],
+         cur_pagesizef : 5,
       }
     },
     methods: {
-        filterWin(value, row) {
+      filterWin(value, row) {
         return row.Result === value;
       },
-
-    //   formatter(row, column) {
-    //     return row.address;
-    //   },
-    //   filterTag(value, row) {
-    //     return row.tag === value;
-    //   },
-    //   filterHandler(value, row, column) {
-    //     const property = column['property'];
-    //     return row[property] === value;
-    //   }
-    }
+      handleSizeChange(val) {
+        var start =(this.cur_pagesizef-1) * val;
+        var end = this.cur_pagesizef * val;
+        alert(this.cur_pagesizef)
+        this.cur_tableData = this.tableData.slice(start,end);
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange(val) {
+        var start =(val-1) * this.cur_pagesize;
+        var end = val * this.cur_pagesize;
+        this.cur_tableData = this.tableData.slice(start,end);
+        this.cur_pagesizef = val
+        console.log(`当前页: ${val}`);
+      }
+    },
   }
 </script>
-<style scoped>
+<style>
 .hero{
-  width: 100px;
     height: 30px;;
 }
-.hero.pic{
-  display: inline;
+.el-table th{
+        background:#060713; /*表头颜色*/
+        font-size: 12px;
 
-}
-.hero.name{
-  display: inline;
-}
+        text-align: center
+    }
+.el-table td{
+        background:#252525; /*颜色*/
+        font-size: 12px;
+        height:5px;
+        text-align: center
+    }
+
 </style>

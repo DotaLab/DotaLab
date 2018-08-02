@@ -32,6 +32,13 @@ export function fetchUserTotal (id) {
     })
   }
 
+  export function fetchRankMatches (id) {
+    return request({
+      url: base_url + 'players/'+id + '/matches?lobby_type=7',
+      method: 'get',
+    })
+  }
+
 // export function fetchArticle (id) {
 //   return request({
 //     url: APIbaseURL + '/article/detail',
