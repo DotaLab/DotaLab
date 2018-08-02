@@ -90,4 +90,19 @@ import {fromnowadays} from '@/utils/tool'
 <<<<<<< HEAD
 </script>
 =======
+</script>
+<style>
+.friend{
+  width: 150px;
+    height: 30px;;
+}
+.friend.pic{
+  display: inline;
+
+}
+.friend.name{
+  display: inline;
+
+}
+</style>
 >>>>>>> de35c2b381f492ae5a3085b03fc6e16e6aad7848
