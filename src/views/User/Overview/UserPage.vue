@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div class="vessel">
     <div  class="top">
       <div class="top_left">
         <!-- 用户头像 -->
         <div class="contentDiv"> <img :src="avatarfull"/></div>
         <!-- 用户名称 -->
         <div class="username">
-          <p>{{personaname}}</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{personaname}}</p>
           <ul>
             <button>刷新</button>
             <button>过滤</button>
@@ -68,25 +68,15 @@
       </div>
 
       <div class="middle_bottom">
+       <navigation></navigation>
       </div>
 
     </div>
-
-
-    <div class="bottom">
-      <div class="bottom_left">
-        <div class="match">
-          <Ttable v-if="options_show"></Ttable>
-        </div>
-      </div>
-
-
-      <div class="bottom_right">
-        <Peertable v-if="options_show"></Peertable>
-      </div>
-
+    <div>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </div>
-  
   </div>
 </template>
 
@@ -100,20 +90,21 @@ import { geticon } from '@/utils/draw'
 import { pieoDraw } from '@/utils/draw'
 import { drawLine } from '@/utils/draw'
 import Echarts from '@/components/Echarts'
-import Ttable from '@/components/Table/Table'
-import Peertable from '@/components/Table/PeerTable'
+import Navigation from '@/components/Navigation'
+import buttoncontent from '@/components/UserMatchbutton'
+import RankTable from '@/components/Table/RankTable'
 
 export default {
   components:{
     Echarts,
-    Ttable,
-    Peertable,
+    Navigation,
+    buttoncontent,
+    RankTable,
   },
   data() {
     return {
       
       avatarfull:'',
-      personaname:'',
       personaname:'',
       user:[],
       user_total:[],
@@ -215,7 +206,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style >
 .contentDiv {
   display: inline-block;
   margin: 5px auto;
@@ -273,26 +264,28 @@ ul li {
   float: left;
   text-align: center;
 }
-.container {
+.vessel {
   width: 1200px;
   margin: 0 auto;
 }
 /* 顶部 */
 .top {
   width: 100%;
-  height: 240px;
+  height: 200px;
   margin: 10px;
   border: 1px dashed #dcdddd;
 }
 /* 顶部左边 */
 .top_left {
-  width: 350px;
+
   height: 180px;
   overflow: hidden;
   border: 1px dashed #dcdddd;
   float: left;
   padding: 5px;
-  margin: 5px;
+  margin: 5px ;
+ 
+  
 }
 .top_left .pic {
   width: 180px;
@@ -362,11 +355,11 @@ ul li {
   padding: 5px;
   margin: 5px;
 }
+
 .top_middle_2 .item{
   width: 100px;
   height: 100px;
   float: left;
-  
 }
 .top_middle_2 .item .item-text {
   float: right;
@@ -390,20 +383,18 @@ ul li {
 /* 中间 */
 .middle {
   width: 100%;
-  height: 300px;
+  height: 380px;
   margin: 10px;
   border: 1px dashed #dcdddd;
 }
 .middle_top {
-  height: 35%;
+  height: 75%;
   width: 95%;
-  padding-left: 50px;
   padding-top: 15px;
 }
-.middle_bottom {
-  margin: 10px auto;
-  height: 50%;
-  width: 95%;
+.middle_bottom{
+  height: 20%;
+  border:  1px dashed #dcdddd;
 }
 .middle_bottom img {
   float: left;

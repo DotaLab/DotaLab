@@ -87,4 +87,7 @@ import {fromnowadays} from '@/utils/tool'
       }
     }
   }
+<<<<<<< HEAD
 </script>
+=======
+>>>>>>> de35c2b381f492ae5a3085b03fc6e16e6aad7848
