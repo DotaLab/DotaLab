@@ -71,7 +71,11 @@
       </div>
 
     </div>
-    <RankTable></RankTable>
+    <div>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </div>
   </div>
 </template>
 

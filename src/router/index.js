@@ -7,6 +7,8 @@ import Home from '@/views/HomePage/Home'
 import News from '@/views/News'
 import Hero from '@/views/Hero'
 import Skill from '@/views/Skill'
+import Overmatches from '@/components/UserMatchbutton'
+import RankTable from '@/components/Table/RankTable'
 Vue.use(Router)
 
 export default new Router({
@@ -40,6 +42,16 @@ export default new Router({
       path: '/Skill/:key',
       name: 'Skill',
       component: Skill
-    }
+    },
+    {
+      path: '/Userpage/overmatches',
+      name: 'Overmatches',
+      component: Overmatches
+    },
+    {
+      path: '/Userpage/ranktable',
+      name: 'RankTable',
+      component: RankTable
+    },
   ]
 })

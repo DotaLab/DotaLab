@@ -14,12 +14,12 @@ data() {
         tableData: [
         {
           name: '历史战绩',
-          path: 'match',
+          path: '/Userpage/overmatches',
           active: false
         },
         {
           name: '天梯记录',
-          path: 'forecast',
+          path: '/Userpage/ranktable',
           active: false
         },
         {
