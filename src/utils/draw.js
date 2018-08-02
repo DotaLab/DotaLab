@@ -34,7 +34,7 @@ export  function pieoDraw(optiondata){
             {
                 name: '胜率',
                 type: 'gauge',
-                radius:47,
+                radius:50,
                 startAngle:180,
                 endAngle:0,
                 center: ['50%', '90%'],
@@ -60,6 +60,7 @@ export  function pieoDraw(optiondata){
                 },
                 //仪表盘指针。
                 pointer: {
+                    //这个show属性好像有问题，因为在这次开发中，需要去掉指正，我设置false的时候，还是显示指针，估计是BUG吧，我用的echarts-3.2.3；希望改进。最终，我把width属性设置为0，成功搞定！
                     show: false,
                     //指针长度
                 },

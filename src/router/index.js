@@ -9,6 +9,7 @@ import Hero from '@/views/Hero'
 import Skill from '@/views/Skill'
 import Overmatches from '@/components/UserMatchbutton'
 import RankTable from '@/components/Table/RankTable'
+import Matches from '@/views/User/detail/Overview.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -19,9 +20,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/test',
-      name: 'Test',
-      component: Test
+      path: '/User/Matches',
+      name: 'Matches',
+      component: Matches
     },
     {
       path: '/User/Overview',

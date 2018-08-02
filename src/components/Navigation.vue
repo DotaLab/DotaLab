@@ -24,7 +24,7 @@ data() {
         },
         {
           name: '个人数据',
-          path: 'analysis',
+          path: '/User/Matches',
           active: false
         },
         {

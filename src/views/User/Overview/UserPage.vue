@@ -94,6 +94,8 @@ import Navigation from '@/components/Navigation'
 import buttoncontent from '@/components/UserMatchbutton'
 import RankTable from '@/components/Table/RankTable'
 
+import {fetchMatcheinfo} from '@/api/match.js'
+
 export default {
   components:{
     Echarts,
@@ -135,18 +137,20 @@ export default {
     for(var i=0;i<3;i++)
       kda[i] = new Array(3);
     var user_id = this.$store.state.UserId;
-
+    var match_id = 4032120406
     axios.all([
+        
         fetchUser(user_id),
         fetchUserTotal(user_id),
         fetchUserRecent(user_id),
-        fetchUserPeer(user_id)
+        fetchUserPeer(user_id),
+        fetchMatcheinfo(match_id)
       ]).then(response=>{
         this.$store.state.UserInfo = response[0].data;
         this.$store.state.UserTotal = response[1].data;
         this.$store.state.UserRecentMacth = response[2].data;
         this.$store.state.UserPeerser = response[3].data;
-
+        this.$store.state.MatchInfo = response[4].data;
 
 
         for (var i=0;i<20;i++){
