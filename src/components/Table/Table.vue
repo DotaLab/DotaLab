@@ -1,9 +1,9 @@
 <template>
   <el-table
-    :data="tableData" 
-    highlight-current-row
-    style="width: 100%;padding=0px">
-    <el-table-column
+    :data="tableData"
+    style="width: 100%;padding=0px"
+    :row-class-name="tableRowClassName">
+  <el-table-column
       prop="Img"
       label="使用英雄"
       width="156" 
@@ -14,6 +14,7 @@
             <div class="pic" style="float:left">
               <img :src='scope.row.Img' style="width:50px;height:30px">
               </div>
+
           <div class="name" style="vertical-align:middle;height:35px;display:table-cell;color:#888888">
             {{scope.row.Heroname}}
             </div>
@@ -45,42 +46,69 @@
       width="100"
       >
     </el-table-column>
+
      <el-table-column
       prop="kills"
       label="击杀数"
       sortable
       >
     </el-table-column>
+
      <el-table-column
       prop="deaths"
       label="阵亡数"
       sortable
       >
     </el-table-column>
+
      <el-table-column
       prop="assists"
       label="助攻数"
       sortable
       >
     </el-table-column>
+
     <el-table-column
       prop="tag"
       label="KDA"
       width="120">
       <template slot-scope="scope">
+
        <div>
            <p> {{ scope.row.KDA }}</p>
             <div style="float:left; height:2px; background-color: rgb(102, 187, 106);" :style="'width:' + scope.row.K * 100 +'%;'"> &nbsp; </div>
             <div style="float:left; height:2px; background-color: rgb(255, 76, 76);" :style="'width:' + scope.row.D * 100  +'%;'">  &nbsp;</div>
             <div style="float:left; height:2px; background-color: rgb(124, 153, 168);" :style="'width:' + scope.row.A * 100  +'%;'"> &nbsp; </div>
         </div>
+
       </template>
     </el-table-column>
   </el-table>
 </template>
 
+<style>
+.hero{
+  width: 100px;
+    height: 30px;;
+}
+.hero.pic{
+  display: inline;
+
+}
+.hero.name{
+  display: inline;
+}
+  .el-table .warning-row {
+    background: rgb(39, 39, 49);
+  }
+
+  .el-table .success-row {
+    background: #171722;
+  }
+</style>
+
 <script>
-import {formatSeconds} from '@/utils/tool'
+ import {formatSeconds} from '@/utils/tool'
   export default {
     created(){
         this.tableData = this.$store.state.UserRecentMacth;
@@ -123,32 +151,15 @@ import {formatSeconds} from '@/utils/tool'
         filterWin(value, row) {
         return row.Result === value;
       },
+      tableRowClassName({row, rowIndex}) {
+        if (rowIndex%2==0) {
+          return 'warning-row';
+        } else if (rowIndex%2!=0) {
+          return 'success-row';
+        }
+        return '';
+      }
 
-    //   formatter(row, column) {
-    //     return row.address;
-    //   },
-    //   filterTag(value, row) {
-    //     return row.tag === value;
-    //   },
-    //   filterHandler(value, row, column) {
-    //     const property = column['property'];
-    //     return row[property] === value;
-    //   }
     }
   }
 </script>
-<style>
-.hero{
-  width: 100px;
-    height: 30px;;
-}
-.hero.pic{
-  display: inline;
-
-}
-.hero.name{
-  display: inline;
-}
-
-
-</style>

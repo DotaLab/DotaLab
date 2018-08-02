@@ -446,11 +446,6 @@ ul li {
 
         text-align: center
     }
-.el-table td{
-        background:#141414; /*颜色*/
-        font-size: 12px;
-        height:5px;
-        text-align: center
-    }
+
 </style>
 
