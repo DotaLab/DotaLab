@@ -162,21 +162,4 @@
 
     }
   }
-<<<<<<< HEAD
 </script>
-=======
-</script>
-<style scoped>
-.hero{
-  width: 100px;
-    height: 30px;;
-}
-.hero.pic{
-  display: inline;
-
-}
-.hero.name{
-  display: inline;
-}
-</style>
->>>>>>> de35c2b381f492ae5a3085b03fc6e16e6aad7848
