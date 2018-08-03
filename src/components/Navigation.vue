@@ -29,7 +29,7 @@ data() {
         },
         {
           name: '常用英雄',
-          path: 'heros',
+          path: '/Userpage/farm',
           active: false
         }
         ],

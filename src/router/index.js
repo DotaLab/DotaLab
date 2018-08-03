@@ -9,7 +9,8 @@ import Hero from '@/views/Hero'
 import Skill from '@/views/Skill'
 import Overmatches from '@/components/UserMatchbutton'
 import RankTable from '@/components/Table/RankTable'
-import Matches from '@/views/User/detail/Overview.vue'
+import Matches from '@/views/User/detail/Overview'
+import Farm from '@/views/User/detail/Farm'
 Vue.use(Router)
 
 export default new Router({
@@ -54,5 +55,10 @@ export default new Router({
       name: 'RankTable',
       component: RankTable
     },
+    {
+      path: '/Userpage/farm',
+      name: 'Farm',
+      component: Farm
+    }
   ]
 })

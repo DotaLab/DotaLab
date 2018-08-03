@@ -137,7 +137,7 @@ export default {
     for(var i=0;i<3;i++)
       kda[i] = new Array(3);
     var user_id = this.$store.state.UserId;
-    var match_id = 4032120406
+    var match_id = 4036496606
     axios.all([
         
         fetchUser(user_id),

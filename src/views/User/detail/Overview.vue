@@ -314,11 +314,6 @@
 
 </div>
 
-
-
-
-
-
 </template>
 
 <script>
@@ -341,21 +336,6 @@
                 flag2 = flag2 + 1; 
             }
         }
-        // var arr2=[];
-        // for(var i=0;i<25;i++){
-        //   arr2[i]=[];
-        // }
-        // for(var i=0;i<this.DiretAbl.length;i++)
-        // {
-          
-        //       for(var j=0;j<this.DiretAbl[i].length;j++)
-        //       {
-        //             arr2[j][i]=this.DiretAbl[i][j];
-        //       }
-        // }
-        // this.DiretAbl = [];
-        // this.DiretAbl = arr2
-
         for(var i=0;i<25;i++){
           this.header[i] = ""+i;
         }
