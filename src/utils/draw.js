@@ -136,10 +136,10 @@ export function drawXPBar(ydata,data){
     var B = new Array();var H = new Array();
     var R = new Array();var Q = new Array();
     for(var i=0;i<10;i++){
-        B[i] = data[i][0];
+        B[i] = data[i][2];
         H[i] = data[i][1];
         R[i] = data[i][3];
-        Q[i] = data[i][2];
+        Q[i] = data[i][0];
     }
     var option = {
         tooltip : {
@@ -280,3 +280,245 @@ export function drawGoldBar(ydata,data){
     };
     return options;
 }
+
+export function drawMinTeam(data,time){
+    var options = {
+        title: {
+            text: '团队经济经验变化图'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['经济','经验']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: time
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'经济',
+                type:'line',
+                stack: '总量',
+                data:data[0]
+            },
+            {
+                name:'经验',
+                type:'line',
+                stack: '总量',
+                data:data[1]
+            }
+        ]
+    };
+    return options;
+}
+
+export function drawGoldMin(data,time,hero){
+    var options = {
+        title: {
+            text: '个人经济变化图'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:hero
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: time
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:hero[0],
+                type:'line',
+                stack: '总量',
+                data:data[0]
+            },
+            {
+                name:hero[1],
+                type:'line',
+                stack: '总量',
+                data:data[1]
+            },
+            {
+                name:hero[2],
+                type:'line',
+                stack: '总量',
+                data:data[2]
+            },
+            {
+                name:hero[3],
+                type:'line',
+                stack: '总量',
+                data:data[3]
+            },
+            {
+                name:hero[4],
+                type:'line',
+                stack: '总量',
+                data:data[4]
+            },
+            {
+                name:hero[5],
+                type:'line',
+                stack: '总量',
+                data:data[5]
+            },
+            {
+                name:hero[6],
+                type:'line',
+                stack: '总量',
+                data:data[6]
+            },
+            {
+                name:hero[7],
+                type:'line',
+                stack: '总量',
+                data:data[7]
+            },
+            {
+                name:hero[8],
+                type:'line',
+                stack: '总量',
+                data:data[8]
+            },
+            {
+                name:hero[9],
+                type:'line',
+                stack: '总量',
+                data:data[9]
+            }
+        ]
+    };
+    return options;
+}
+
+export function drawXPMin(data,time,hero){
+    var options = {
+        title: {
+            text: '个人经验变化图'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:hero
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: time
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:hero[0],
+                type:'line',
+                stack: '总量',
+                data:data[0]
+            },
+            {
+                name:hero[1],
+                type:'line',
+                stack: '总量',
+                data:data[1]
+            },
+            {
+                name:hero[2],
+                type:'line',
+                stack: '总量',
+                data:data[2]
+            },
+            {
+                name:hero[3],
+                type:'line',
+                stack: '总量',
+                data:data[3]
+            },
+            {
+                name:hero[4],
+                type:'line',
+                stack: '总量',
+                data:data[4]
+            },
+            {
+                name:hero[5],
+                type:'line',
+                stack: '总量',
+                data:data[5]
+            },
+            {
+                name:hero[6],
+                type:'line',
+                stack: '总量',
+                data:data[6]
+            },
+            {
+                name:hero[7],
+                type:'line',
+                stack: '总量',
+                data:data[7]
+            },
+            {
+                name:hero[8],
+                type:'line',
+                stack: '总量',
+                data:data[8]
+            },
+            {
+                name:hero[9],
+                type:'line',
+                stack: '总量',
+                data:data[9]
+            }
+        ]
+    };
+    return options;
+}
+
+

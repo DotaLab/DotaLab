@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/views/User/Overview/UserPage'
 
-import Test from '@/views/Test/Test.vue'
 import Home from '@/views/HomePage/Home'
 import News from '@/views/News'
 import Hero from '@/views/Hero'
@@ -11,6 +10,7 @@ import Overmatches from '@/components/UserMatchbutton'
 import RankTable from '@/components/Table/RankTable'
 import Matches from '@/views/User/detail/Overview'
 import Farm from '@/views/User/detail/Farm'
+import Graphs from '@/views/User/detail/Graphs'
 Vue.use(Router)
 
 export default new Router({
@@ -59,6 +59,11 @@ export default new Router({
       path: '/Userpage/farm',
       name: 'Farm',
       component: Farm
+    },
+    {
+      path: '/Userpage/graphs',
+      name: 'Graphs',
+      component: Graphs
     }
   ]
 })
