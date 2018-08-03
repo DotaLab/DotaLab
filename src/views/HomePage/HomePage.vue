@@ -21,7 +21,7 @@ export default {
             axios.get("/static/data/heroes.json").then(response =>{
                 this.$store.state.HeroImg = response.data;
             })
-            this.$router.push({path:'/User/Overview'});
+            this.$router.push({path:'/User'});
 
         }
     },

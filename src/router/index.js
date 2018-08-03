@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/views/User/Overview/UserPage'
+
 
 import Home from '@/views/HomePage/Home'
 import News from '@/views/News'
 import Hero from '@/views/Hero'
 import Skill from '@/views/Skill'
+import User from '@/views/User/Overview/UserPage'
 import Overmatches from '@/components/UserMatchbutton'
 import RankTable from '@/components/Table/RankTable'
 import Matches from '@/views/User/detail/Overview'
@@ -21,14 +22,26 @@ export default new Router({
       component: Home
     },
     {
-      path: '/User/Matches',
-      name: 'Matches',
-      component: Matches
+      path: '/User',
+      name: 'User',
+      component: User,
+      children:[
+        {
+          path: '/overmatches',
+          name: 'Overmatches',
+          component: Overmatches
+        },
+        {
+          path: '/ranktable',
+          name: 'RankTable',
+          component: RankTable
+        }
+      ]
     },
     {
-      path: '/User/Overview',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '/matches',
+      name: 'Matches',
+      component: Matches
     },
     {
       path:'/News',
@@ -44,16 +57,6 @@ export default new Router({
       path: '/Skill/:key',
       name: 'Skill',
       component: Skill
-    },
-    {
-      path: '/Userpage/overmatches',
-      name: 'Overmatches',
-      component: Overmatches
-    },
-    {
-      path: '/Userpage/ranktable',
-      name: 'RankTable',
-      component: RankTable
     },
     {
       path: '/Userpage/farm',

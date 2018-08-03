@@ -14,22 +14,22 @@ data() {
         tableData: [
         {
           name: '历史战绩',
-          path: '/Userpage/overmatches',
+          path: 'overmatches',
           active: false
         },
         {
           name: '天梯记录',
-          path: '/Userpage/ranktable',
+          path: 'ranktable',
           active: false
         },
         {
           name: '个人数据',
-          path: '/User/Matches',
+          path: 'Matches',
           active: false
         },
         {
           name: '常用英雄',
-          path: '/Userpage/graphs',
+          path: 'farm',
           active: false
         }
         ],

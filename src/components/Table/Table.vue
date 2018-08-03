@@ -2,9 +2,10 @@
   <el-table
     :data="tableData" 
     highlight-current-row
+    @row-click="openDetails"
     style="width: 100%;padding=0px">
     <el-table-column
-      prop="Img"
+      prop="match_id"
       label="使用英雄"
       width="156" 
       >
@@ -81,6 +82,7 @@
 
 <script>
 import {formatSeconds} from '@/utils/tool'
+import {fetchMatcheinfo} from '@/api/match'
   export default {
     created(){
         this.tableData = this.$store.state.UserRecentMacth;
@@ -123,6 +125,13 @@ import {formatSeconds} from '@/utils/tool'
         filterWin(value, row) {
         return row.Result === value;
       },
+      openDetails(row, event, column){
+        var matchid = row.match_id;
+        fetchMatcheinfo(matchid).then(response=>{
+          this.$store.state.MatchInfo = response.data;
+          this.$router.push({path:'/matches'})
+        })
+      }
 
     //   formatter(row, column) {
     //     return row.address;
