@@ -26,17 +26,17 @@ export default {
       slides: [
         {
             // E:\GitHub\DotaLab\src\assets\slideShow\8.jpg
-          src: require('E:/GitHub/DotaLab/src/assets/slideShow/8.jpg'),
+          src: require('@/assets/slideShow/8.jpg'),
           title: 'xxx1',
           href: 'www.baidu.com'
         },
         {
-          src: require('E:/GitHub/DotaLab/src/assets/slideShow/9.jpg'),
+          src: require('@/assets/slideShow/9.jpg'),
           title: 'xxx2',
           href: 'www.baidu.com'
         },
         {
-          src: require('E:/GitHub/DotaLab/src/assets/slideShow/3.png'),
+          src: require('@/assets/slideShow/3.png'),
           title: 'xxx3',
           href: 'http://xxx.xxx.com'
         }
