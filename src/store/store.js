@@ -12,10 +12,9 @@ export default new Vuex.Store({
     UserRecentMacth:[],
     UserPeer:[],
     HeroImg:[],
+    MatchInfo:[],
   },
   mutations:{
-    increment:state => state.count ++,
-    decrement:state => state.count --,
     setUserId(userId){
       state.UserId = userId;
     },
@@ -32,7 +31,10 @@ export default new Vuex.Store({
       state.UserPeer = userPeer;
     },
     setHeroImg(heroImg){
-      state.setHeroImg = heroImg;
+      state.HeroImg = heroImg;
+    },
+    setMatchInfo(matchinfo){
+      state.MatchInfo = matchinfo;
     }
   }
 })

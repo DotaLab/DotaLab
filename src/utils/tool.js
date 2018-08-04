@@ -35,3 +35,4 @@ export function fromnowadays(value){
     result = ""+parseInt(theTime/86400) + "天前";
     return result;
 }
+

@@ -35,19 +35,20 @@
       </div>
       <div class="top_middle_2" >
         <div class="item">
-          <Echarts id="mainChart1" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '100px', height: '100px'}"></Echarts>
+           <!-- 1,1胜率饼图-->
+          <Echarts id="mainChart1" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '100px', height: '80px'}"></Echarts>
         </div>
         <div class="item">
           <!-- 1,2胜率饼图-->
-            <div id="mainChart2" :style="{width: '100px', height: '100px'}"></div>
+             <Echarts id="mainChart2" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '150px', height: '80px'}"></Echarts>
         </div>
-        <div class="item">
-          <!-- 2,1胜率饼图-->
-           <div id="mainChart3" :style="{width: '100px', height: '100px'}"></div>
+                <div class="item">
+          <!-- 1,2胜率饼图-->
+             <Echarts id="mainChart3" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '100px', height: '80px'}"></Echarts>
         </div>
-        <div class="item">
-          <!-- 2,2胜率饼图-->
-           <div id="mainChart4" :style="{width: '100px', height: '100px'}"></div>
+                <div class="item">
+          <!-- 1,2胜率饼图-->
+             <Echarts id="mainChart4" :options='options[0]' class="echarts" v-if="options_show" :style="{width: '150px', height: '80px'}"></Echarts>
         </div>
       </div>
       <div class="top_right">
@@ -63,7 +64,7 @@
       <div class="middle_top"> 
         <!-- 折线大图表 -->
         <!-- <div id="myChart" :style="{width: '1200px', height: '300px'}"></div> -->
-        <echarts id="myChart" :options='options[1]' class="echarts" v-if="options_show" :style="{width: '1200px', height: '300px'}"></echarts>
+        <echarts id="myChart" :options='options[1]' class="echarts" v-if="options_show" :style="{width: '1200px', height: '300px',position:'absolute',left:'170px',top:'313px'}"></echarts>
       </div>
 
       <div class="middle_bottom">
@@ -92,6 +93,8 @@ import Echarts from '@/components/Echarts'
 import Navigation from '@/components/Navigation'
 import buttoncontent from '@/components/UserMatchbutton'
 import RankTable from '@/components/Table/RankTable'
+
+import {fetchMatcheinfo} from '@/api/match.js'
 
 export default {
   components:{
@@ -156,18 +159,20 @@ export default {
     for(var i=0;i<3;i++)
       kda[i] = new Array(3);
     var user_id = this.$store.state.UserId;
-
+    var match_id = 4036496606
     axios.all([
+        
         fetchUser(user_id),
         fetchUserTotal(user_id),
         fetchUserRecent(user_id),
-        fetchUserPeer(user_id)
+        fetchUserPeer(user_id),
+        fetchMatcheinfo(match_id)
       ]).then(response=>{
         this.$store.state.UserInfo = response[0].data;
         this.$store.state.UserTotal = response[1].data;
         this.$store.state.UserRecentMacth = response[2].data;
         this.$store.state.UserPeerser = response[3].data;
-
+        this.$store.state.MatchInfo = response[4].data;
 
 
         for (var i=0;i<20;i++){
@@ -369,18 +374,18 @@ ul li {
   color: #dcdddd;
 }
 .top_middle_2 {
-  width: 300px;
+  width: 200px;
   height: 180px;
   /* border:  1px dashed #dcdddd; */
   float: left;
   padding: 5px;
   margin: 5px;
 }
-.top_middle_2 .item {
+
+.top_middle_2 .item{
+  width: 100px;
+  height: 100px;
   float: left;
-  width: 145px;
-  position: relative;
-  margin: 5px 2px;
 }
 .top_middle_2 .item .item-text {
   float: right;
@@ -417,5 +422,52 @@ ul li {
   height: 20%;
   border:  1px dashed #dcdddd;
 }
+.middle_bottom img {
+  float: left;
+  width: 260px;
+  margin: 10px;
+}
+/* 底部 */
+.bottom {
+  width: 100%;
+  height: 600px;
+  margin: 10px;
+  border: 1px dashed #dcdddd;
+  background-color: #000000
+}
+.bottom_left {
+  /* border: 1px dashed #000000; */
+  margin: 18px;
+  width: 62%;
+  height: 90%;
+  float: left;
+
+}
+.bottom_left .bottom_left_title {
+  line-height: 40px;
+  background: #2a2c3b;
+  height: 40px;
+}
+.bottom_right {
+  /* border: 1px dashed #dcdddd; */
+  width: 28%;
+  float: right;
+  height: 90%;
+  padding: 10px;
+  margin: 20px;
+
+}
+.el-table th{
+        background:#060713; /*表头颜色*/
+        font-size: 12px;
+
+        text-align: center
+    }
+.el-table td{
+        background:#141414; /*颜色*/
+        font-size: 12px;
+        height:5px;
+        text-align: center
+    }
 </style>
 

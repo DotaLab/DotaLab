@@ -2,25 +2,42 @@
   <el-table
     :data="tableData" 
     highlight-current-row
+    @row-click="openDetails"
     style="width: 100%;padding=0px">
     <el-table-column
-      prop="Img"
+      prop="match_id"
       label="使用英雄"
-      width="130" 
+      width="156" 
       >
       <template slot-scope="scope">
-          <div class="hero" style="float:left">
-        <div class="pic"><img :src='scope.row.Img' style="width:40px;height:30px"></div>
-        <div style="height:30px">{{scope.row.Heroname}}</div>
-        </div>
+          <span class="hero">
+
+            <div class="pic" style="float:left">
+              <img :src='scope.row.Img' style="width:50px;height:30px">
+              </div>
+          <div class="name" style="vertical-align:middle;height:35px;display:table-cell;color:#888888">
+            {{scope.row.Heroname}}
+            </div>
+
+        </span>
+
+        
       </template>
     </el-table-column>
+
     <el-table-column
       prop="Result"
+      label="比赛结果"
+      width="80"
       :filters="[{ text: '胜利', value: '胜利' }, { text: '败北', value: '败北' }]"
       :filter-method="filterWin"
-      label="比赛结果"
-      width="80">
+      filter-placement="bottom-end">
+          <template slot-scope="scope">
+            <el-tag :type="scope.row.Result === '胜利' ? 'success' : 'danger'"
+          disable-transitions>{{scope.row.Result}}</el-tag>
+    </template>
+
+      
     </el-table-column>
     <el-table-column
       prop="Time"
@@ -50,7 +67,7 @@
     <el-table-column
       prop="tag"
       label="KDA"
-      width="115">
+      width="120">
       <template slot-scope="scope">
        <div>
            <p> {{ scope.row.KDA }}</p>
@@ -65,6 +82,7 @@
 
 <script>
 import {formatSeconds} from '@/utils/tool'
+import {fetchMatcheinfo} from '@/api/match'
   export default {
     created(){
         this.tableData = this.$store.state.UserRecentMacth;
@@ -107,6 +125,13 @@ import {formatSeconds} from '@/utils/tool'
         filterWin(value, row) {
         return row.Result === value;
       },
+      openDetails(row, event, column){
+        var matchid = row.match_id;
+        fetchMatcheinfo(matchid).then(response=>{
+          this.$store.state.MatchInfo = response.data;
+          this.$router.push({path:'/matches'})
+        })
+      }
 
     //   formatter(row, column) {
     //     return row.address;
@@ -123,19 +148,14 @@ import {formatSeconds} from '@/utils/tool'
 </script>
 <style scoped>
 .hero{
+  width: 100px;
     height: 30px;;
 }
-.el-table th{
-        background:#060713; /*表头颜色*/
-        font-size: 12px;
+.hero.pic{
+  display: inline;
 
-        text-align: center
-    }
-.el-table td{
-        background:#252525; /*颜色*/
-        font-size: 12px;
-        height:5px;
-        text-align: center
-    }
-
+}
+.hero.name{
+  display: inline;
+}
 </style>

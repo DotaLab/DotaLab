@@ -13,6 +13,7 @@
     </el-pagination>
   </div>
     <el-table
+    @row-click="openDetails"
     :data="cur_tableData" 
     highlight-current-row
     style="width: 100%;padding=0px">
@@ -79,6 +80,7 @@
 </template>
 
 <script>
+import {fetchMatcheinfo} from '@/api/match'
 import {fetchRankMatches} from '@/api/user.js'
 import {formatSeconds} from '@/utils/tool.js'
   export default {
@@ -143,6 +145,13 @@ import {formatSeconds} from '@/utils/tool.js'
         this.cur_tableData = this.tableData.slice(start,end);
         this.cur_pagesizef = val
         console.log(`当前页: ${val}`);
+      },
+      openDetails(row, event, column){
+        var matchid = row.match_id;
+        fetchMatcheinfo(matchid).then(response=>{
+          this.$store.state.MatchInfo = response.data;
+          this.$router.push({path:'/matches'})
+        })
       }
     },
   }
