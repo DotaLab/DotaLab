@@ -8,7 +8,7 @@
         <div class="username">
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{personaname}}</p>
           <ul>
-            <button>刷新</button>
+            <button ><router-link to='/test_ue'>刷新</router-link></button>
             <button>过滤</button>
           </ul>
         </div>
@@ -68,7 +68,7 @@
       </div>
 
       <div class="middle_bottom">
-       <navigation></navigation>
+       <navigation  :navi="tableData"></navigation>
       </div>
 
     </div>
@@ -116,6 +116,28 @@ export default {
       peers:[],
       options:[],
       options_show:false,
+         tableData: [
+        {
+          name: '历史战绩',
+          path: 'match',
+          active: false
+        },
+        {
+          name: '天梯记录',
+          path: 'forecast',
+          active: false
+        },
+        {
+          name: '个人数据',
+          path: 'analysis',
+          active: false
+        },
+        {
+          name: '常用英雄',
+          path: 'heros',
+          active: false
+        }
+        ],
     };
   },
   created() {
@@ -261,7 +283,7 @@ body {
   background-color: #000000;
   margin: 0;
   padding: 0;
-  color: #dcdddd;
+  color: #ffffff;
 }
 ul li {
   list-style: none;

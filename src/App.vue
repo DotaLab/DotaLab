@@ -63,7 +63,7 @@ body {
   background: #f0f2f5;
   font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
   font-size: 14px;
-  color: #444;
+  color: rgb(250, 249, 249);
 }
 .app-head {
   background: #031046;

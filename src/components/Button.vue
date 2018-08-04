@@ -1,11 +1,12 @@
 <template >
   
       <div class="buttons">
-    <router-link v-for="(item,index) in buttons" :to="{ path: item.path }" :key="index" >
+    <router-link v-for="(item,index) in buttons"  :to="{ path: item.path }" :key="index" >
       <div class="item"><button  class="btn ripple"> {{item.name}}</button></div>
            <!-- <div class="item">  <button  class="btn ripple"> 装备信息</button></div>
               <div class="item">   <button  class="btn ripple"> 近期活动</button></div> -->
-     
+      <!-- :to="{ path: item.path }" -->
+       <!-- onclick="goNext('http://www.baidu.com',3000)" -->
     </router-link>
    </div>
 
@@ -18,7 +19,10 @@ export default {
   methods: {
       goNews:function () {
           this.$router.push({path:'/News'})
-      }
+      },
+   goNext:function(url,delay) {
+   setTimeout("window.location='"+url+"'",delay);
+   }
   },
   data () {
     return { 
@@ -68,7 +72,7 @@ export default {
   
 }
 .buttons .item{
-    width: 33%;
+    width: 30%;
     float: left;
 }
  .ripple {
