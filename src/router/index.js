@@ -7,6 +7,12 @@ import Home from '@/views/HomePage/Home'
 import News from '@/views/News'
 import Hero from '@/views/Hero'
 import Skill from '@/views/Skill'
+import Press from '@/components/Press'
+import News_s from '@/components/News_s'
+import test_ue from '@/views/test_ue'
+import ue from '@/components/ue'
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -17,19 +23,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/test',
-      name: 'Test',
-      component: Test
-    },
-    {
       path: '/User/Overview',
       name: 'HelloWorld',
       component: HelloWorld
-    },
-    {
-      path:'/News',
-      name: 'News',
-      component: News
     },
     {
       path: '/Hero',
@@ -40,6 +36,35 @@ export default new Router({
       path: '/Skill/:key',
       name: 'Skill',
       component: Skill
+    },
+    {
+      path:'/News',
+      name: 'News',
+      component: News,
+      redirect: '/Press',
+      children: [
+        {
+          path: '/Press',
+          name: 'Press',
+          component: Press
+        },
+        {
+          path: '/News_s',
+          name: 'News_s',
+          component: News_s
+        }
+      ]
+    },
+    {
+      path: '/test_ue',
+      name: 'test_ue',
+      component: test_ue
+    },,
+    {
+      path: '/ue',
+      name: 'ue',
+      component: ue
     }
+   
   ]
 })

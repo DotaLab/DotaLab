@@ -28,15 +28,15 @@ export default {
             // E:\GitHub\DotaLab\src\assets\slideShow\8.jpg
           src: require('E:/GitHub/DotaLab/src/assets/slideShow/8.jpg'),
           title: 'xxx1',
-          href: 'detail/analysis'
+          href: 'www.baidu.com'
         },
         {
           src: require('E:/GitHub/DotaLab/src/assets/slideShow/9.jpg'),
           title: 'xxx2',
-          href: 'detail/count'
+          href: 'www.baidu.com'
         },
         {
-          src: require('E:/GitHub/DotaLab/src/assets/slideShow/10.jpg'),
+          src: require('E:/GitHub/DotaLab/src/assets/slideShow/3.png'),
           title: 'xxx3',
           href: 'http://xxx.xxx.com'
         }

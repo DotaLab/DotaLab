@@ -1,7 +1,7 @@
  <template>
      <div class="navigation">
         <ul>
-        <router-link tag="li" v-for="(item , index) in tableData" :key="index" :to="{ path: item.path }" >
+        <router-link tag="li" v-for="(item , index) in navi" :key="index" :to="{ path: item.path }" >
        {{ item.name }}
         </router-link>
         </ul>
@@ -9,43 +9,29 @@
  </template>
  <script>
 export default {
-data() {
-      return {
-        tableData: [
-        {
-          name: '历史战绩',
-          path: 'match',
-          active: false
-        },
-        {
-          name: '天梯记录',
-          path: 'forecast',
-          active: false
-        },
-        {
-          name: '个人数据',
-          path: 'analysis',
-          active: false
-        },
-        {
-          name: '常用英雄',
-          path: 'heros',
-          active: false
+    props: {
+        navi: {
+            type: Array,
+            default: []
         }
-        ],
-        // 'pic':"'C:\Users\15407\Desktop\home\src\assets\106.jpg' "
-        
-      }
-}     
+     },
+    data() {
+      return {   
+      }  
+    }
+  
+
 }
 </script>
 <style scoped>
 ul{
   list-style: none;
 }
-
+.navigation{
+  height: 60px;;
+}
 li{
-    padding: 5px 20px;
+    padding: 1px 20px;
  margin: 0 2px;
   float: left;
   font-size: 20px;
@@ -58,7 +44,7 @@ li::before {
     top: 0;
     left: 0;
     width: 0;
-    height: 100%;
+    height: 80%;
     border-bottom: 2px solid rgb(252, 7, 7);
      transition: 0.2s all linear;
 }
