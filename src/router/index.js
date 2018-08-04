@@ -35,6 +35,7 @@ export default new Router({
       path: '/User',
       name: 'User',
       component: User,
+      redirect: '/overmatches',
       children:[
         {
           path: '/overmatches',
@@ -52,6 +53,7 @@ export default new Router({
       path: '/detail',
       name: 'Detail',
       component: Detail,
+      redirect: '/overviews',
       children:[
         {
           path: '/overviews',
