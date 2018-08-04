@@ -10,13 +10,16 @@ import Skill from '@/views/Skill'
 import User from '@/views/User/Overview/UserPage'
 import Overmatches from '@/components/UserMatchbutton'
 import RankTable from '@/components/Table/RankTable'
-import Matches from '@/views/User/detail/Overview'
-import Farm from '@/views/User/detail/Farm'
-import Graphs from '@/views/User/detail/Graphs'
+
 import Press from '@/components/Press'
 import News_s from '@/components/News_s'
 import test_ue from '@/views/test_ue'
 import ue from '@/components/ue'
+
+import Detail from '@/views/User/detail'
+import Overviews from '@/views/User/detail/Overview'
+import Farm from '@/views/User/detail/Farm'
+import Graphs from '@/views/User/detail/Graphs'
 
 
 Vue.use(Router)
@@ -29,7 +32,6 @@ export default new Router({
       component: Home
     },
     {
-
       path: '/User',
       name: 'User',
       component: User,
@@ -47,12 +49,26 @@ export default new Router({
       ]
     },
     {
-      path: '/matches',
-      name: 'Matches',
-      component: Matches
-      path: '/User/Overview',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '/detail',
+      name: 'Detail',
+      component: Detail,
+      children:[
+        {
+          path: '/overviews',
+          name: 'Overviews',
+          component: Overviews
+        },
+        {
+          path: '/farm',
+          name: 'Farm',
+          component: Farm
+        },
+        {
+          path: '/graphs',
+          name: 'Graphs',
+          component: Graphs
+        }
+      ]
     },
     {
       path: '/Hero',
@@ -65,16 +81,6 @@ export default new Router({
       component: Skill
     },
     {
-
-      path: '/Userpage/farm',
-      name: 'Farm',
-      component: Farm
-    },
-    {
-      path: '/Userpage/graphs',
-      name: 'Graphs',
-      component: Graphs
-    }
       path:'/News',
       name: 'News',
       component: News,

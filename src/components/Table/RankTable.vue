@@ -150,7 +150,7 @@ import {formatSeconds} from '@/utils/tool.js'
         var matchid = row.match_id;
         fetchMatcheinfo(matchid).then(response=>{
           this.$store.state.MatchInfo = response.data;
-          this.$router.push({path:'/matches'})
+          this.$router.push({path:'/detail'})
         })
       }
     },

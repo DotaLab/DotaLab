@@ -1,7 +1,7 @@
 <template>
   <div class="con">
     <div class="tanke">
-      <h1> 战士 </h1>
+      <h1> 力量 </h1>
      <div  class="hero_total" v-for="(hero , index) in items" :key="index"   v-if="hero.primary === 3">
       <div class="box" >
         <router-link :to="'/Skill/' + index ">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="fashi">
-       <h1> 射手 </h1>
+       <h1> 敏捷 </h1>
     <div  class="hero_total" v-for="(hero , index) in items" :key="index"  to=""  v-if="hero.primary === 4" >
       <div class="box" >
       <router-link :to="'/Skill/' + index ">
@@ -30,7 +30,7 @@
     </div>
 
   <div class="sheshou">
-     <h1> 法师 </h1>
+     <h1> 智力 </h1>
   <div  class="hero_total" v-for="(hero , index) in items" :key="index"  v-if="hero.primary === 5">
     <div class="box" >
       <router-link :to="'/Skill/' + index ">
@@ -45,8 +45,6 @@
   </div>
 </div>
 
-
-</div>
 </template>
 
 <script>
@@ -82,7 +80,6 @@ h1{text-align: center}
 .fashi{ border: 2px groove; margin: 5px;}
 .sheshou{border: 2px groove;margin: 5px;}
 .box{ width: 140px;float: left;margin: 5px;}
-.hero_total{}
 .clearfloat{clear:both;height:0;font-size: 1px;line-height: 0px;}  
 .name{text-align:center; color: #FFF;}
 </style>

@@ -68,14 +68,12 @@
       </div>
 
       <div class="middle_bottom">
-       <navigation  :navi="tableData"></navigation>
+         <Navigation :navi='MatchDate' ></Navigation>
+         <keep-alive>
+          <router-view></router-view>
+         </keep-alive>
       </div>
 
-    </div>
-    <div>
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
     </div>
   </div>
 </template>
@@ -116,15 +114,15 @@ export default {
       peers:[],
       options:[],
       options_show:false,
-         tableData: [
+      MatchDate: [
         {
           name: '历史战绩',
-          path: 'match',
+          path: 'overmatches',
           active: false
         },
         {
           name: '天梯记录',
-          path: 'forecast',
+          path: 'ranktable',
           active: false
         },
         {
