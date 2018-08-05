@@ -1,5 +1,10 @@
 
 
+function onReady(instance, echarts) {
+    // echarts.number 或 echarts.format 方法在这里获取
+    console.log(instance, echarts);
+  }
+
 export function geticon(rank_tier) {
     var reselt = new Array();
     var base = '../../static/rank-icon/';
@@ -521,4 +526,103 @@ export function drawXPMin(data,time,hero){
     return options;
 }
 
+export function drawScatter(dataAll) {
+    var markLineOpt = {
+        animation: false,
+        data: [[{
+            coord: [0, 0],
+            symbol: 'none'
+        }, {
+            coord: [1, 1],
+            symbol: 'none'
+        }]]
+    };
+    
+    var option = {
+        title: {
+            text: '英雄选择以及胜率散点图',
+            x: 'center',
+            y: 0
+        },
+        grid: [
+            {x: '7%', y: '7%', width: '38%', height: '38%'},
+            {x2: '7%', y: '7%', width: '38%', height: '38%'},
+            {x: '7%', y2: '7%', width: '38%', height: '38%'},
+            {x2: '7%', y2: '7%', width: '38%', height: '38%'}
+        ],
+        tooltip: {
+            formatter: 'Group {a}: ({c})'
+        },
+        xAxis: [
+            {gridIndex: 0, min: 0, max: 0.05},
+            {gridIndex: 1, min: 0, max: 0.05},
+            {gridIndex: 2, min: 0, max: 0.05},
+            {gridIndex: 3, min: 0, max: 0.05}
+        ],
+        yAxis: [
+            {gridIndex: 0, min: 0, max: 0.05},
+            {gridIndex: 1, min: 0, max: 0.05},
+            {gridIndex: 2, min: 0, max: 0.05},
+            {gridIndex: 3, min: 0, max: 0.05}
+        ],
+        series: [
+            {
+                name: 'I',
+                type: 'scatter',
+                xAxisIndex: 0,
+                yAxisIndex: 0,
+                data: dataAll[0],
+                markLine: markLineOpt
+            },
+            {
+                name: 'II',
+                type: 'scatter',
+                xAxisIndex: 1,
+                yAxisIndex: 1,
+                data: dataAll[1],
+                markLine: markLineOpt
+            },
+            {
+                name: 'III',
+                type: 'scatter',
+                xAxisIndex: 2,
+                yAxisIndex: 2,
+                data: dataAll[2],
+                markLine: markLineOpt
+            },
+            {
+                name: 'IV',
+                type: 'scatter',
+                xAxisIndex: 3,
+                yAxisIndex: 3,
+                data: dataAll[3],
+                markLine: markLineOpt
+            }
+        ]
+    };
+    return option;
+}
+
+export function drawColorBar(time,data) {
+    var option = {
+        xAxis: {
+            type: 'category',
+            data: time
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            itemStyle: {
+                emphasis: {
+                    barBorderRadius: 7
+                },
+            },
+            data: data,
+            type: 'bar'
+        }]
+    };
+    console.log("结束")
+    return option
+}
 

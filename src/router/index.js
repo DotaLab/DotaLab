@@ -10,6 +10,8 @@ import Skill from '@/views/Skill'
 import User from '@/views/User/Overview/UserPage'
 import Overmatches from '@/components/UserMatchbutton'
 import RankTable from '@/components/Table/RankTable'
+import UserHero from '@/views/User/UserHero'
+import HeroRankUser from '@/views/User/HeroRankUser'
 
 import Press from '@/components/Press'
 import News_s from '@/components/News_s'
@@ -21,11 +23,22 @@ import Overviews from '@/views/User/detail/Overview'
 import Farm from '@/views/User/detail/Farm'
 import Graphs from '@/views/User/detail/Graphs'
 
+import HeroRank from '@/views/HeroInfo/HeroRank'
+import HeroHB from '@/views/HeroInfo/HeroHB'
+import HeroTime from '@/views/HeroInfo/HeroTime'
+
+import Loginback from '@/views/Login'
+import Login from '@/views/MyLogin'
+import Register from '@/views/MyRegister'
+
+import Item from '@/views/Item'
+
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+
     {
       path: '/',
       name: 'Home',
@@ -35,7 +48,6 @@ export default new Router({
       path: '/User',
       name: 'User',
       component: User,
-      redirect: '/overmatches',
       children:[
         {
           path: '/overmatches',
@@ -46,9 +58,33 @@ export default new Router({
           path: '/ranktable',
           name: 'RankTable',
           component: RankTable
+        },
+        {
+          path: '/userHero',
+          name: 'UserHero',
+          component: UserHero
         }
       ]
     },
+    {
+      path: '/loginback',
+      name: 'Loginback',
+      component: Loginback,
+      redirect:"/login",
+      children:[
+        {
+          path: '/login',
+          name: 'Login',
+          component: Login
+        },
+        {
+          path: '/register',
+          name: 'Register',
+          component: Register
+        }
+      ]
+    },
+    
     {
       path: '/detail',
       name: 'Detail',
@@ -80,7 +116,24 @@ export default new Router({
     {
       path: '/Skill/:key',
       name: 'Skill',
-      component: Skill
+      component: Skill,
+      children:[
+        {
+          path:'/heroRank',
+          name: 'HeroRank',
+          component: HeroRank
+        },
+        {
+          path:'/heroHB',
+          name: 'HeroHB',
+          component: HeroHB
+        },
+        {
+          path:'/heroTime',
+          name: 'HeroTime',
+          component: HeroTime
+        }
+      ]
     },
     {
       path:'/News',
@@ -104,11 +157,17 @@ export default new Router({
       path: '/test_ue',
       name: 'test_ue',
       component: test_ue
-    },,
+    },
     {
       path: '/ue',
       name: 'ue',
       component: ue
+    },
+    {
+      path: '/Item',
+      name: 'Item',
+      component: Item
     }
+
   ]
 })

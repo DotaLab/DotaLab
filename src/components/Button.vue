@@ -34,7 +34,7 @@ export default {
         },
         {
           name: '装备信息',
-          path: '',
+          path: 'Item',
           active: false
         },
          {
@@ -58,11 +58,12 @@ export default {
 	outline:none;
 	letter-spacing:.2em;
 	font-weight:bold;
-	background:#999;
+  font-size: 100%;
+	background: #edf1fa;
 	cursor:pointer;
 	overflow:hidden;
 
-	color:#fff;
+	color:rgb(10, 10, 10);
   float: left;
 
 }

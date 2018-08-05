@@ -12,11 +12,7 @@
           
           <ul>
              
-            <li><router-link :to="{path: '/registe'}">登录</router-link></li>
-            <li>|</li>
-            <li>注册</li>
-            <li>|</li>
-            <li>关于</li>
+            <li><router-link :to="{path: '/loginback'}">登录</router-link></li>
           </ul>
         </div>  
       </div>
@@ -40,8 +36,6 @@ export default {
     HomePage
   }
 }
-// E:\GitHub\DotaLab\src\views\HomePage\HomePage.vue
-// E:\GitHub\DotaLab\src\App.vue
 </script>
 
 <style >

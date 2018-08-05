@@ -39,6 +39,13 @@ export function fetchUserTotal (id) {
     })
   }
 
+  export function fetchHeroRank (id) {
+    return request({
+      url: base_url + 'players/'+ id + '/rankings',
+      method: 'get',
+    })
+  }
+
 // export function fetchArticle (id) {
 //   return request({
 //     url: APIbaseURL + '/article/detail',
@@ -70,3 +77,5 @@ export function fetchUserTotal (id) {
 //     data
 //   })
 // }
+
+

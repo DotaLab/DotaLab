@@ -11,13 +11,11 @@
     </div>
     <!-- 英雄技能图片 /  【ability_info】技能信息 -->
     <div class="hero_abilities">
-    <div  v-for="(abi , index ) in ability_info" >
-      <div class="pic" @mouseover="imagshow(index)" @mouseout="imagnotshow(index)">
-        <img :src="abi.img" :title="abi.abilities" width="64px" height="64px" >
-
-      </div>  
-
-    </div>
+      <div  v-for="(abi , index ) in ability_info" :key="index" >
+        <div class="pic" @mouseover="imagshow(index)" @mouseout="imagnotshow(index)">
+          <img :src="abi.img" :title="abi.abilities" width="64px" height="64px" >
+        </div>  
+      </div>
     </div>
     <!-- 英雄技能信息描述    -->
     <div class="hero_abilities_info">
@@ -39,15 +37,35 @@
                 {{attr.header}} {{format(attr.value)}}
               </li>
             </ul>
-        </div>
+      </div>
       <!-- </transition> -->
-   </div>
+    </div>
   </div>
   <div class="rate">
-    其他信息
+    
+    <el-menu
+    :default-active="activeIndex2"
+    class="el-menu-demo"
+    mode="horizontal"
+    @select="handleSelect"
+    background-color="#545c64"
+    text-color="#fff"
+    
+    active-text-color="#ffd04b">
+    <el-menu-item index="1" >排名</el-menu-item>
+    <el-menu-item index="2" >匹配</el-menu-item>
+    <el-menu-item index="3" >时长</el-menu-item>
+    <el-menu-item index="4" ><a :href='"https://www.opendota.com/heroes/"+ cur_hero +"/benchmarks"'>评估</a></el-menu-item>
+    <el-menu-item index="5"  disabled>近期</el-menu-item>
+    </el-menu>
+    <div>
+       <router-view></router-view>
+    <div>
+
   </div>
-             
-  </div> 
+    </div>
+  </div>
+  </div>
   
 </div>
 </template>
@@ -65,10 +83,13 @@ export default {
       'ability_info':[],
       'cur_index':-1,
       'hero_img': [],
-      'hero_title' : []
+      'hero_title' : [],
+       cur_hero : null,
     }
   },
   created: function () {
+    this.cur_hero = this.$route.params.key
+    this.$store.state.cur_hero = this.$route.params.key
     const vm = this
     let web = [
       axios.get('/static/data/draftpool.json').then((reponse) => { return reponse.data }),
@@ -117,7 +138,22 @@ export default {
     },
     imagnotshow: function (index) {   
         this.cur_index = -1
-    }
+    },
+    handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+    handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      },
+    handleSelect(key, keyPath) {
+        if(key==1){
+          this.$router.push({path:'/heroRank'});
+        }else if(key==2){
+          this.$router.push({path:'/heroHB'});
+        }else if(key==3){
+          this.$router.push({path:'/heroTime'});
+        }
+      }
   }
 }
 </script>

@@ -93,6 +93,7 @@ import buttoncontent from '@/components/UserMatchbutton'
 import RankTable from '@/components/Table/RankTable'
 
 import {fetchMatcheinfo} from '@/api/match.js'
+import {fetchHeroStats} from '@/api/hero.js'
 
 export default {
   components:{
@@ -126,13 +127,13 @@ export default {
           active: false
         },
         {
-          name: '个人数据',
+          name: '使用英雄',
           path: 'analysis',
           active: false
         },
         {
-          name: '常用英雄',
-          path: 'heros',
+          name: '英雄排名',
+          path: 'userHero',
           active: false
         }
         ],
@@ -159,18 +160,20 @@ export default {
     var user_id = this.$store.state.UserId;
     var match_id = 4036496606
     axios.all([
-        
+
         fetchUser(user_id),
         fetchUserTotal(user_id),
         fetchUserRecent(user_id),
         fetchUserPeer(user_id),
-        fetchMatcheinfo(match_id)
+        fetchMatcheinfo(match_id),
+        fetchHeroStats()
       ]).then(response=>{
         this.$store.state.UserInfo = response[0].data;
         this.$store.state.UserTotal = response[1].data;
         this.$store.state.UserRecentMacth = response[2].data;
         this.$store.state.UserPeerser = response[3].data;
         this.$store.state.MatchInfo = response[4].data;
+        this.$store.state.HeroInfo = response[5].data;
 
 
         for (var i=0;i<20;i++){

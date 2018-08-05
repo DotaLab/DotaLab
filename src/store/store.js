@@ -11,8 +11,11 @@ export default new Vuex.Store({
     UserTotal:[],
     UserRecentMacth:[],
     UserPeer:[],
-    HeroImg:[],
     MatchInfo:[],
+    HeroInfo:[],
+    cur_hero:null,
+    flag1:false,
+    mask: "foolish"
   },
   mutations:{
     setUserId(userId){
@@ -30,11 +33,17 @@ export default new Vuex.Store({
     setUserPeer(userPeer){
       state.UserPeer = userPeer;
     },
-    setHeroImg(heroImg){
-      state.HeroImg = heroImg;
+    setHeroInfo(heroinfo){
+      state.HeroInfo = heroinfo;
     },
     setMatchInfo(matchinfo){
       state.MatchInfo = matchinfo;
+    },
+    setcur_hero(Cur_hero){
+      state.cur_hero = Cur_hero
+    },
+    setflag1(Flag1){
+      state.flag1 = Flag1
     }
   }
 })

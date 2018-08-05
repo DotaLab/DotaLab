@@ -3,7 +3,8 @@
   <el-table
     :data="Direplayer" 
     highlight-current-row
-    style="width: 100%;padding=0px">
+    style="width: 100%;padding=0px"
+    :row-class-name="tableRowClassName">
     <el-table-column
       label="玩家"
       width="100" 
@@ -12,8 +13,7 @@
           <span class="hero">
 
             <div class="pic" style="float:left">
-              <!-- <img :src='scope.row.Img' style="width:50px;height:30px"> -->
-              {{scope.row.account_id}}
+              <img :src='scope.row.Img' style="width:50px;height:30px">
               </div>
           <div class="name" style="vertical-align:middle;height:35px;display:table-cell;color:#888888">
             {{scope.row.personaname}}
@@ -28,7 +28,7 @@
     <el-table-column
       prop="level"
       label="等级"
-      width="30"
+      width="100"
       filter-placement="bottom-end">
 
       
@@ -37,83 +37,83 @@
       prop="kills"
       label="击杀数"
       sortable
-      width="50"
+      width="100"
       >
     </el-table-column>
      <el-table-column
       prop="deaths"
       label="阵亡数"
       sortable
-      width="50"
+      width="100"
       >
     </el-table-column>
      <el-table-column
       prop="assists"
       label="助攻数"
       sortable
-      width="50"
+      width="100"
       >
     </el-table-column>
      <el-table-column
       prop="gold_per_min"
       sortable
       label="GPM"
-      width="50"
+      width="100"
       >
     </el-table-column>
      <el-table-column
       prop="xp_per_min"
       sortable
       label="XPM"
-      width="50"
+      width="100"
       >
     </el-table-column>
      <el-table-column
       prop="last_hits"
       sortable
       label="正补"
-      width="50"
+      width="100"
       >
     </el-table-column>
      <el-table-column
       prop="denies"
       sortable
       label="反补"
-      width="50"
+      width="100"
       >
     </el-table-column>
      <el-table-column
       prop="hero_damage"
       sortable
       label="英雄伤害"
-      width="50"
+      width="120"
       >
     </el-table-column>
      <el-table-column
       prop="hero_healing"
       sortable
       label="英雄治疗"
-      width="50"
+      width="120"
       >
     </el-table-column>
      <el-table-column
       prop="tower_damage"
       sortable
       label="防御塔伤害"
-      width="50"
+      width="120"
       >
     </el-table-column>
      <el-table-column
       prop="total_gold"
       sortable
       label="经济"
-      width="50"
+      width="100"
       >
     </el-table-column>
     <el-table-column
       prop="item_0"
       label="物品"
-      width="50">
+      width="100">
       <template slot-scope="scope">
        <div>
            <p> {{ scope.row.item_0 }}</p>
@@ -121,6 +121,9 @@
       </template>
     </el-table-column>
   </el-table>
+
+
+
   <el-table
       :data="Radiantplayer" 
       highlight-current-row
@@ -133,8 +136,7 @@
             <span class="hero">
 
               <div class="pic" style="float:left">
-                <!-- <img :src='scope.row.Img' style="width:50px;height:30px"> -->
-                {{scope.row.account_id}}
+                <img :src='scope.row.Img' style="width:50px;height:30px">
                 </div>
             <div class="name" style="vertical-align:middle;height:35px;display:table-cell;color:#888888">
               {{scope.row.personaname}}
@@ -149,7 +151,7 @@
       <el-table-column
         prop="level"
         label="等级"
-        width="30"
+        width="100"
         filter-placement="bottom-end">
 
         
@@ -158,83 +160,83 @@
         prop="kills"
         label="击杀数"
         sortable
-        width="50"
+        width="100"
         >
       </el-table-column>
       <el-table-column
         prop="deaths"
         label="阵亡数"
         sortable
-        width="50"
+        width="100"
         >
       </el-table-column>
       <el-table-column
         prop="assists"
         label="助攻数"
         sortable
-        width="50"
+        width="100"
         >
       </el-table-column>
       <el-table-column
         prop="gold_per_min"
         sortable
         label="GPM"
-        width="50"
+        width="100"
         >
       </el-table-column>
       <el-table-column
         prop="xp_per_min"
         sortable
         label="XPM"
-        width="50"
+        width="100"
         >
       </el-table-column>
       <el-table-column
         prop="last_hits"
         sortable
         label="正补"
-        width="50"
+        width="100"
         >
       </el-table-column>
       <el-table-column
         prop="denies"
         sortable
         label="反补"
-        width="50"
+        width="100"
         >
       </el-table-column>
       <el-table-column
         prop="hero_damage"
         sortable
         label="英雄伤害"
-        width="50"
+        width="120"
         >
       </el-table-column>
       <el-table-column
         prop="hero_healing"
         sortable
         label="英雄治疗"
-        width="50"
+        width="120"
         >
       </el-table-column>
       <el-table-column
         prop="tower_damage"
         sortable
         label="防御塔伤害"
-        width="50"
+        width="120"
         >
       </el-table-column>
       <el-table-column
         prop="total_gold"
         sortable
         label="经济"
-        width="50"
+        width="100"
         >
       </el-table-column>
       <el-table-column
         prop="item_0"
         label="物品"
-        width="50">
+        width="100">
         <template slot-scope="scope">
         <div>
             <p> {{ scope.row.item_0 }}</p>
@@ -252,11 +254,10 @@
       <template slot-scope="scope">
           <span class="hero">
             <div class="pic" style="float:left">
-              <!-- <img :src='scope.row.Img' style="width:50px;height:30px"> -->
-              {{Radiantplayer.account_id}}
+              <img :src='Direplayer[scope.$index].Img' style="width:50px;height:30px">
               </div>
           <div class="name" style="vertical-align:middle;height:35px;display:table-cell;color:#888888">
-            {{Radiantplayer.personaname}}
+            {{Direplayer.personaname}}
             </div>
         </span>
       </template>
@@ -264,7 +265,7 @@
     
     <el-table-column 
     v-for="(col,key) in header" :key="key"
-    :label="col" width=50px >
+    :label="col" width=55px >
       <template slot-scope="scope">
             <span class="hero">
             <div class="name" style="vertical-align:middle;height:35px;display:table-cell;color:#888888">
@@ -284,8 +285,7 @@
       <template slot-scope="scope">
           <span class="hero">
             <div class="pic" style="float:left">
-              <!-- <img :src='scope.row.Img' style="width:50px;height:30px"> -->
-              {{Radiantplayer.account_id}}
+              <img :src='Radiantplayer[scope.$index].Img' style="width:50px;height:30px">
               </div>
           <div class="name" style="vertical-align:middle;height:35px;display:table-cell;color:#888888">
             {{Radiantplayer.personaname}}
@@ -296,7 +296,7 @@
     
     <el-table-column 
     v-for="(col,key) in header" :key="key"
-    :label="col" width=50px >
+    :label="col" width=55px >
       <template slot-scope="scope">
             <span class="hero">
             <div class="name" style="vertical-align:middle;height:35px;display:table-cell;color:#888888">
@@ -327,12 +327,13 @@
             if(playerinfo[i].isRadiant == true){
                 this.Radiantplayer[flag1] = playerinfo[i]
                 this.RadiantAbl[flag1] =  playerinfo[i].ability_upgrades_arr
-                
+                this.Radiantplayer[flag1].Img = 'https://api.opendota.com' + this.$store.state.HeroInfo[this.Radiantplayer[flag1].hero_id].img;
                 flag1 = flag1 + 1; 
             }else{
                this.Direplayer[flag2] = playerinfo[i]
 
                this.DiretAbl[flag2] = playerinfo[i].ability_upgrades_arr
+               this.Direplayer[flag2].Img = 'https://api.opendota.com' + this.$store.state.HeroInfo[this.Direplayer[flag2].hero_id].img;
                 flag2 = flag2 + 1; 
             }
         }
@@ -348,13 +349,25 @@
         Direplayer: [],
         header:[],
         RadiantAbl:[],
-        DiretAbl:[]
+        DiretAbl:[],
+        Rimg:[],
+        Dimg:[]
         
       }
     },
     methods: {
+        tableRowClassName({row, rowIndex}){
+        if (rowIndex%2==0) {
+          return 'warning-row';
+        } else if (rowIndex%2!=0) {
+          return 'success-row';
+        }
+        return '';
+        },
+
         filterWin(value, row) {
         return row.Result === value;
+
       },
     }
   }
@@ -371,4 +384,11 @@
 .hero.name{
   display: inline;
 }
+.el-table .warning-row {
+    background: rgb(39, 39, 49);
+  }
+
+.el-table .success-row {
+    background: #171722;
+  }
 </style>

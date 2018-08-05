@@ -100,11 +100,10 @@ import {fetchMatcheinfo} from '@/api/match'
             }
             this.tableData[i].Time = formatSeconds(this.tableData[i].duration)
 
-            this.tableData[i].Img = this.$store.state.HeroImg[this.tableData[i].hero_id].img;
+            this.tableData[i].Img = 'https://api.opendota.com' + this.$store.state.HeroInfo[this.tableData[i].hero_id].img;
             
-            this.tableData[i].Heroname = this.$store.state.HeroImg[this.tableData[i].hero_id].name;
+            this.tableData[i].Heroname = this.$store.state.HeroInfo[this.tableData[i].hero_id].localized_name;
             
-            this.tableData[i].Heroname = this.$store.state.HeroImg[this.tableData[i].hero_id].name;
 
             if(this.tableData[i].deaths == 0 ){
                 this.tableData[i].KDA = (this.tableData[i].kills + this.tableData[i].assists) / 1
@@ -112,8 +111,6 @@ import {fetchMatcheinfo} from '@/api/match'
                 this.tableData[i].KDA = ((this.tableData[i].kills + this.tableData[i].assists) / this.tableData[i].deaths).toFixed(2)
             }
         }
-
-        this.heroData = this.$store.state.HeroImg;
     },
     data() {
       return {
@@ -129,7 +126,7 @@ import {fetchMatcheinfo} from '@/api/match'
         var matchid = row.match_id;
         fetchMatcheinfo(matchid).then(response=>{
           this.$store.state.MatchInfo = response.data;
-          this.$router.push({path:'/matches'})
+          this.$router.push({path:'/detail'})
         })
       }
 

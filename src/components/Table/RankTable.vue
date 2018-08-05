@@ -20,11 +20,11 @@
     <el-table-column
       prop="Img"
       label="使用英雄"
-      width="130" 
+      width="200" 
       >
       <template slot-scope="scope">
           <div class="hero" style="float:left">
-        <div class="pic"><img :src='scope.row.Img' style="width:40px;height:30px"></div>
+        <div class="pic"><img :src='scope.row.Img' style="width:50px;height:30px"></div>
         <div style="height:30px">{{scope.row.Heroname}}</div>
         </div>
       </template>
@@ -110,11 +110,9 @@ import {formatSeconds} from '@/utils/tool.js'
         }
         this.cur_tableData  = this.tableData.slice(0,5);
         for(var i=0;i<this.tableData.length;i++){
-            this.tableData[i].Img = this.$store.state.HeroImg[this.tableData[i].hero_id].img;
-            this.tableData[i].Heroname = this.$store.state.HeroImg[this.tableData[i].hero_id].name;
-        }
-        this.heroData = this.$store.state.HeroImg;
-        
+            this.tableData[i].Img = 'https://api.opendota.com' + this.$store.state.HeroInfo[this.tableData[i].hero_id].img;
+            this.tableData[i].Heroname = this.$store.state.HeroInfo[this.tableData[i].hero_id].localized_name;
+          }
         })
     },
     data () {
