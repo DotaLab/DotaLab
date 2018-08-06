@@ -44,7 +44,7 @@ li::before {
     top: 0;
     left: 0;
     width: 0;
-    height: 80%;
+    height: 100%;
     border-bottom: 2px solid rgb(252, 7, 7);
      transition: 0.2s all linear;
 }

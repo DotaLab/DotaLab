@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="userhero">
         <el-table 
             v-if ="show"
             :data="heroinfo" 
@@ -69,5 +69,8 @@ export default {
 </script>
 
 <style>
-
+.userhero{
+    width: 640px;
+    margin: 0 auto;
+}
 </style>

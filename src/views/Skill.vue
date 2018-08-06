@@ -87,6 +87,7 @@ export default {
        cur_hero : null,
     }
   },
+
   created: function () {
     this.cur_hero = this.$route.params.key
     this.$store.state.cur_hero = this.$route.params.key
@@ -185,6 +186,9 @@ body{background: #090136;}
   width: 600px;
 
 }
+  li{
+    
+  }
 .clearfloat{clear:both;height:0;font-size: 1px;line-height: 0px;} 
 .nav .hero_abilities .pic{
   float: left;

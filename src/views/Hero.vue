@@ -148,4 +148,5 @@ h1{text-align: center}
 .box{ width: 140px;float: left;margin: 5px;}
 .clearfloat{clear:both;height:0;font-size: 1px;line-height: 0px;}  
 .name{text-align:center; color: rgb(0, 0, 0);}
+.pic img{position: relative;  left:15px;}
 </style>

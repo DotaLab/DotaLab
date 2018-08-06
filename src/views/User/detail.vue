@@ -1,10 +1,18 @@
 <template>
-    <div>
-         <Navigation :navi='DetailDate' ></Navigation>
+<div >
+         <div class="nav">
+             <div class="nav_top">
+         <Navigation :navi='DetailDate' style="" ></Navigation>
+             </div>
+      
+          <hr>
+
          <keep-alive>
           <router-view></router-view>
          </keep-alive>
-      </div>
+          </div>
+     
+</div>
 </template>
 
 <script>
@@ -38,6 +46,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.nav{
+    width: 1200px;
+    margin: 0 auto;
+    background-color: black;
+    padding: 10px;
+    /* height: 60px; */
+    /* line-height: 60px;; */
+}
+.nav_top{
+    position: relative;
+    left: 32%;
 
+}
 </style>

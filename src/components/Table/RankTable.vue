@@ -1,17 +1,6 @@
 <template>
 <div>
-  <!-- todo 分页功能 -->
-   <div class="block">
-    <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :page-sizes="[5, 10, 15, 20]"
-      :page-size="100"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="size">
-    </el-pagination>
-  </div>
+ 
     <el-table
     @row-click="openDetails"
     :data="cur_tableData" 
@@ -75,6 +64,18 @@
       </template>
     </el-table-column>
   </el-table>
+   <!-- todo 分页功能 -->
+   <div class="block">
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[5, 10, 15, 20]"
+      :page-size="100"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="size">
+    </el-pagination>
+  </div>
 </div>
 
 </template>

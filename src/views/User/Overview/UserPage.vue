@@ -286,11 +286,11 @@ body {
   padding: 0;
   color: #ffffff;
 }
-ul li {
+/* ul li {
   list-style: none;
   float: left;
   text-align: center;
-}
+} */
 .vessel {
   width: 1200px;
   margin: 0 auto;
@@ -431,9 +431,9 @@ ul li {
 /* 底部 */
 .bottom {
   width: 100%;
-  height: 600px;
+  /* height: 600px; */
   margin: 10px;
-  border: 1px dashed #dcdddd;
+  /* border: 1px dashed #dcdddd; */
   background-color: #000000
 }
 .bottom_left {

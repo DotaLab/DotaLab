@@ -1,7 +1,10 @@
 <template>
-    <div>
-
-        
+<div  class="farm">
+<div class="grow">
+    <div class="item">
+      <div class="camp">
+       夜魇经济来源
+     </div>
         <el-table
             :data="Direplayer" 
             highlight-current-row
@@ -31,6 +34,7 @@
             prop="hero_kills"
             label="英雄"
             width="50"
+            height="50"
             filter-placement="bottom-end">
 
             
@@ -99,11 +103,15 @@
             >
             </el-table-column>
         </el-table>   
-
+    </div>
+    <div class="item">
+          <div class="camp">
+        天辉经济来源
+     </div>
         <el-table
             :data="Radiantplayer" 
             highlight-current-row
-            style="width: 100%;padding=0px">
+            style="width: 100%;padding=0px ;">
             <el-table-column
             label="玩家"
             width="100" 
@@ -129,6 +137,7 @@
             prop="hero_kills"
             label="英雄"
             width="50"
+        
             filter-placement="bottom-end">
 
             
@@ -197,8 +206,17 @@
             >
             </el-table-column>
         </el-table>   
-
+    </div>
+    
+</div>
+ <div class="clearfloat"></div>
           <!-- 每分钟变化 -->
+          <hr>
+<div class="change">
+    <div class="item">
+      <div class="camp">
+        夜宴经济情况
+     </div>
         <el-table 
           :data="Diremin" style="width: 100%">
             <el-table-column
@@ -229,7 +247,13 @@
                 </template>
             </el-table-column>
         </el-table>
-
+      </div>
+</div>
+<div class="change">
+        <div class="item">
+          <div class="camp">
+        天辉经济情况
+     </div>
         <el-table 
           :data="Radiantmin" style="width: 100%">
             <el-table-column
@@ -260,18 +284,19 @@
                 </template>
             </el-table-column>
         </el-table>
-
-        
-
-        <!-- 经济来源 -->
-        <Echarts id='Gold_reasons' :options='options[1]' class="goldreasons" :style="{width: '1200px', height: '300px'}"></Echarts>
+    </div>
+</div>
+<div class="clearfloat"></div>
+<div class="chart"> 经济来源</div>
+     <!-- 经济来源 -->
+    <Echarts id='Gold_reasons' :options='options[1]' class="goldreasons" :style="{width: '1200px', height: '300px'}"></Echarts>
 
         <!-- 经验来源 -->
-        <Echarts id='XP_reasons' :options='options[0]' class="xpreasons" :style="{width: '1200px', height: '300px'}"></Echarts>
+    <Echarts id='XP_reasons' :options='options[0]' class="xpreasons" :style="{width: '1200px', height: '300px'}"></Echarts>
 
 
          
-    </div>
+</div>
 </template>
 
 <script>
@@ -351,6 +376,45 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+tr{
+    height: 90px;;
+}
+.farm{
+    background-color: black;
+ 
+}
+.grow .item{
+  float: left;
+    width: 590px;
+    margin: 0 5px;
+}
+.change{
+    float: left;
+    position: relative;
 
+    width: 600px;
+
+   
+}
+.change .item{
+
+    width: 400px;
+    margin: 0 auto;
+}
+
+.chart{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    background-color:#333333;
+    padding: 5px;
+}
+.camp{
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+.clearfloat{clear:both;height:0;font-size: 1px;line-height: 0px;} 
 </style>

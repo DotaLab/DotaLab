@@ -1,5 +1,5 @@
 <template>
-     <div>
+     <div class="herorank">
         <el-table 
             v-if ="show"
             :data="heroRankInfo" 
@@ -73,5 +73,8 @@ export default {
 </script>
 
 <style>
-
+.herorank{
+    width: 800px;
+    margin: 0 auto;
+}
 </style>

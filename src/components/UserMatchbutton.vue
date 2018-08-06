@@ -33,9 +33,9 @@ export default {
 /* 底部 */
 .bottom {
   width: 100%;
-  height: 600px;
+
   margin: 10px;
-  border: 1px dashed #dcdddd;
+  /* border: 1px dashed #dcdddd; */
 }
 .bottom_left {
   border: 1px dashed #dcdddd;

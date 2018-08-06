@@ -15,7 +15,10 @@ export default new Vuex.Store({
     HeroInfo:[],
     cur_hero:null,
     flag1:false,
-    mask: "foolish"
+    mask: "foolish",
+    loginstats:false,
+    Username:'',
+    Userimg:'',
   },
   mutations:{
     setUserId(userId){
@@ -44,6 +47,15 @@ export default new Vuex.Store({
     },
     setflag1(Flag1){
       state.flag1 = Flag1
+    },
+    setloginstats(Loginstats){
+      state.loginstats = Loginstats
+    },
+    setUserimg(userimg){
+      state.Userimg = userimg
+    },
+    setUsername(username){
+      state.Username = username
     }
   }
 })

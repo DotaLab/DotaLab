@@ -26,9 +26,29 @@ export default {
       console.log('change ')
     }
   },
+  created(){
+    this.slides = [
+        {
+            // E:\GitHub\DotaLab\src\assets\slideShow\8.jpg
+          src: require('@/assets/slideShow/Home_1.jpg'),
+          title: 'xxx1',
+          href: 'http://dota2.uuu9.com/201807/569515.shtml'
+        },
+        {
+          src: require('@/assets/slideShow/Home_2.png'),
+          title: 'xxx2',
+          href: 'http://dota2.uuu9.com/201808/572687.shtml'
+        },
+        {
+          src: require('@/assets/slideShow/Home_3.jpg'),
+          title: 'xxx3',
+          href: 'http://dota2.uuu9.com/201808/572670.shtml'
+        }
+      ]
+  },
   data () {
     return {
-      msg : 'hhhh',
+      msg : 'hhhh', 
       invTime: 2000,
       slides: [
         {
@@ -49,6 +69,9 @@ export default {
         }
       ]
     }
+  },
+  deactivated () {
+    this.$destroy()
   }
 }
 </script>

@@ -3,37 +3,65 @@
      <div class="app-head">
       <div class="app-head-inner">
         <router-link :to="{path: '/'}" class="head-logo">
-          <img src="./assets/logo.png">
+          <img src="./assets/Newbee_log.jpg" style="width:100px height:100px">
 
         </router-link>
          <HomePage class="regiter"></HomePage>
         
         <div class="head-nav">
-          
+          <!-- <router-link v-if="show" :to="{path: '/loginback'}">登录</router-link> -->
           <ul>
-             
-            <li><router-link :to="{path: '/loginback'}">登录</router-link></li>
+            <li>
+               <el-button v-if='this.$store.state.loginstats' @click="getuser">用户界面</el-button>
+               <el-button v-if='!this.$store.state.loginstats' @click="getlogin">登陆</el-button>
+            </li>
+            <li>
+              <el-button v-if='this.$store.state.loginstats' @click="getloggin">退出</el-button>
+            </li>
           </ul>
         </div>  
       </div>
     </div>
     <div class="container">
-
+    <keep-alive>
       <router-view></router-view>
-
+    </keep-alive>
     </div>
     <div class="app-foot">
-         <p>© cdut</p>
+         <p>© Newbee_骚力立</p>
     </div>
   </div>
 </template>
 
 <script>
+import {fetchUser} from '@/api/user.js'
 import HomePage from './views/HomePage/HomePage' 
 export default {
   name: 'App',
   components:{
     HomePage
+  },
+  data () {
+    return {
+      showbutton:true,
+      showimg:false,
+
+    }
+  },
+  methods:{
+    getlogin(){
+      this.$router.push({path: '/loginback'})
+    },
+    getloggin(){
+      this.$store.state.loginstats = !this.$store.state.loginstats
+    },
+    getuser(){
+       this.$router.push({path: '/User'})
+    }
+            // this.$router.push({path:'/User'});
+  },
+  mounted(){
+    
   }
 }
 </script>
@@ -41,13 +69,6 @@ export default {
 <style >
 #app {
 
-  /* margin-top: 60px; */
-/*  
-  width: 100%;
-  height: 100%;
-  background:url(./assets/images/tim.jpg) center 0 no-repeat;
-  background-size: cover;
-  position: fixed; */
   background-color: #2d3a4b;
 
 

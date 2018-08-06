@@ -97,14 +97,35 @@ import Axios from 'axios';
           return password;
         },
         getRegister(){
+            //params.append('password', password_ms);
+            
             var password_ms = md5(this.register.psd + this.$store.state.mask);
             var params = new URLSearchParams();
+            var params2 = new URLSearchParams();
+            params2.append('username', this.register.username);
             params.append('username', this.register.username);
             params.append('password', password_ms);
             params.append('steam_id',this.register.steamID)
-            Axios.post('http://www.micahmiao.cn/user/insert',params).then(response=>{
-              alert(response.data)
+            Axios.post('http://www.micahmiao.cn/user/select/usercount',params2).then(response=>{
+              var exist_flag1 = response.data;
+              if(exist_flag1 != 1) {
+                Axios.post('http://www.micahmiao.cn/user/insert',params).then(res2=>{
+                  var regist_flag1 = res2.data
+                  if(regist_flag1){
+                    alert("恭喜你，账号"+this.register.username+"注册成功")
+                    this.$router.push({path:'/loginback'})
+                    
+                  }
+                })
+
+              }else{
+                alert("抱歉，账号"+this.register.username+"已经被注册过了")
+
+              }
             })
+            // Axios.post('http://www.micahmiao.cn/user/insert',params).then(response=>{
+            //   alert(response.data)
+            // })
         }
       }
     }
